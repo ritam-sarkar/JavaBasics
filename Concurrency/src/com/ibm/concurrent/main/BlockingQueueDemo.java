@@ -5,6 +5,8 @@ package com.ibm.concurrent.main;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * @author Ritam
@@ -19,10 +21,16 @@ public class BlockingQueueDemo {
 		// TODO Auto-generated method stub
 
 		MyBlockingQueue<Integer> q = new MyBlockingQueue<Integer>(10);
+		BlockingQueue<Integer> sharedQueue = new LinkedBlockingQueue<Integer>();		
 		Thread t1 = new Thread(new Produce(q), " producer");
 		Thread t2 = new Thread(new Consume(q), " consumer");
-		t1.start();
-		t2.start();
+		
+		Thread t3 = new Thread(new Produce2(sharedQueue), " producer2");
+		Thread t4 = new Thread(new Consume2(sharedQueue), " consumer2");
+		//t1.start();
+		//t2.start();
+		t3.start();
+		t4.start();
 	}
 
 }
@@ -46,6 +54,30 @@ class Produce implements Runnable{
 		}		
 	}	
 }
+class Produce2 implements Runnable{
+	
+	private BlockingQueue<Integer> blockingQueue;
+
+	public Produce2(BlockingQueue<Integer> blockingQueue) {
+		super();
+		this.blockingQueue = blockingQueue;
+	}
+	@Override
+	public void run() {
+		int i=0;
+		while(i<10){
+			System.out.println(Thread.currentThread().getName()+" produces "+i);
+			try {
+				blockingQueue.put(i);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			i++;
+		}		
+	}
+	
+}
 
 class Consume implements Runnable{
 	private MyBlockingQueue<Integer> q;
@@ -67,6 +99,26 @@ class Consume implements Runnable{
 		
 	}
 	
+}
+
+class Consume2 implements Runnable {
+	private BlockingQueue<Integer> blockingQueue;	
+
+	public Consume2(BlockingQueue<Integer> blockingQueue) {
+		super();
+		this.blockingQueue = blockingQueue;
+	}
+	@Override
+	public void run() {
+		while(true){
+			try {
+				System.out.println(Thread.currentThread().getName()+" consumes "+blockingQueue.take());
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}		
+	}	
 }
 
 

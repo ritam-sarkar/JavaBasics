@@ -63,7 +63,7 @@ class Thread1 extends Thread{
 		try {
 		this.off.getLock().lockInterruptibly();
 		for(int i=0;i<5;i++){
-			//this.off.increase();
+			    this.off.increase();
 			
 				if(this.off.getLock().tryLock(10, TimeUnit.MILLISECONDS)){
 					this.off.decrease();
