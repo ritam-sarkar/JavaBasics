@@ -12,6 +12,7 @@ public class ThisSuperDemo {
 	public static void main(String[] args){
 		Employee emp = new Employee("Ritam","Belgharia");
 		System.out.println(emp.name);
+		System.out.println(emp.address);
 		Programmer prog = new Programmer();
 		prog.print();
 		Employee emp2 = new Programmer("program1", "pragm1 address");

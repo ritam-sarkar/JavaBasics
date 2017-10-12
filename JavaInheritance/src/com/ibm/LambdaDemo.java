@@ -37,13 +37,13 @@ public class LambdaDemo {
 		//empList.removeIf((e)->e.getName().startsWith("s"));
 		List<Emp> result = empList.stream().filter(e-> e.getRating()>4).collect(Collectors.toList());
 		result.forEach((n)->{System.out.println(n.getSalary());});
-		
-		String name = empList.stream()
-				.filter(x -> "ritam1".equals(x.getName()))
-				.map(Emp::getName)						//convert stream to String
+		result.forEach(System.out::println);
+		long salary = empList.stream()
+				.filter(x -> "ritam".equals(x.getName()))
+				.map(Emp::getSalary)						//convert stream to long
 				.findAny()
-				.orElse("");
-		System.out.println("after map name is "+name);
+				.orElse(0l);
+		System.out.println("after map name is "+salary);
 		testCollection(empList);
 	}
 	private void  filter(Validate validate,List<Emp> eList){

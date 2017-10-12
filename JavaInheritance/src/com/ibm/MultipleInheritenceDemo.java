@@ -74,9 +74,12 @@ class A implements Interface1,Interface2{
 
 interface BaseInt1{
 	int a=10;
-	 void method();/*{System.out.println("method of BaseInt1");}*/
-	static void statMethod(){System.out.println("baseint 1 static method");};
+	 default void method(){System.out.println("method of BaseInt1");}
+	 static void statMethod(){System.out.println("baseint 1 static method");};
 	default void method2(){
+		
+	}
+	default void method3(){
 		
 	}
 }
@@ -90,6 +93,10 @@ interface MyInt extends BaseInt1,BaseInt2{
 		System.out.println("method of MyInt"); 
         BaseInt2.super.method();
     }
+	@Override
+	default void method3(){
+		MyInt.this.method();
+	}
 	
 }
 class MyClass implements BaseInt1,BaseInt2{
@@ -103,6 +110,7 @@ class MyClass implements BaseInt1,BaseInt2{
 	}
 	public void m(){
 		//BaseInt2.super.method();
+		//method2();
 	}
 	
 }
