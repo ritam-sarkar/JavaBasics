@@ -23,4 +23,10 @@ public class MyIterator<E> implements Iterator<E> {
 		return null;
 	}
 
+	@Override
+	public void remove() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

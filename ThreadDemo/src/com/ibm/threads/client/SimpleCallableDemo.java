@@ -8,17 +8,33 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
+import java.util.concurrent.ThreadPoolExecutor;
 
+import com.ibm.model.Machine;
 import com.ibm.threads.MyCallable;
 
 public class SimpleCallableDemo {
 
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
-
-		Callable<String> callable1 = new MyCallable(1);
-		Callable<String> callable2 = new MyCallable(2);
-		Callable<String> callable3 = new MyCallable(3);
-		ExecutorService ex = Executors.newFixedThreadPool(5);
+        
+		SimpleCallableDemo demo = new SimpleCallableDemo();
+		Machine machine = new Machine();
+		Callable<String> callable1 = new MyCallable(1,machine);
+		Callable<String> callable2 = new MyCallable(2,machine);
+		Callable<String> callable3 = new MyCallable(3,machine);
+		ExecutorService ex = Executors.newFixedThreadPool(2);
+		ex.submit(callable1);
+		ex.submit(callable2);
+		ex.submit(callable3);
+		System.out.println(((ThreadPoolExecutor)ex).getMaximumPoolSize());
+		ex.shutdown();
+		
+		
+		// submit runnbale object
+		/*MyRunnable runnable1 = demo.new MyRunnable();
+		Future f = ex.submit(runnable1);
+		System.out.println(f.get());*/
+		
 		
 
 		//Using Executor framework with no return type;
@@ -30,7 +46,7 @@ public class SimpleCallableDemo {
 		
 		
 		//Using Executor, Future framework with  return type;
-		Future<String> future1 = ex.submit(callable1);
+		/*Future<String> future1 = ex.submit(callable1);
 		Future<String> future2 = ex.submit(callable2);
 		Future<String> future3 = ex.submit(callable3);
 		List<Future<String>> futureList = new ArrayList<Future<String>>();
@@ -39,7 +55,7 @@ public class SimpleCallableDemo {
 		futureList.add(future3);
 		for(Future<String> future : futureList){
 			System.out.println(future.get());
-		}
+		}*/
 		
 		//Using executor and futuretask
 		/*FutureTask<String> futureTask1 = new FutureTask<String>(callable1);
@@ -58,6 +74,15 @@ public class SimpleCallableDemo {
 			
 
 		
+		
+	}
+	
+	class MyRunnable implements Runnable {
+
+		@Override
+		public void run() {
+            System.out.println("Run method of my runnable ");			
+		}
 		
 	}
 

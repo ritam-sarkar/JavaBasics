@@ -5,6 +5,7 @@ package com.ibm.stream;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -54,10 +55,10 @@ public class ForEachConsumerDemo {
 		streamString.forEach(stringConsumer);
 		streamEmpA.forEach(empConsumer2); // forEach is a terminating method
 		// sort by keys
-		Map<Integer,String> sortedMapWithKey = map1.entrySet().stream().sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
-                (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+		Map<Integer,String> sortedMapWithKey = map1.entrySet().stream().sorted(Map.Entry.comparingByKey()).collect(
+				Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,(oldValue, newValue) -> oldValue, LinkedHashMap::new));
 		System.out.println(sortedMapWithKey);
-		
+		// sort by value
 		 Map<String, Integer> sortedmapWithVal = map2.entrySet().stream()
 	                .sorted(Map.Entry.comparingByValue())
 	                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,

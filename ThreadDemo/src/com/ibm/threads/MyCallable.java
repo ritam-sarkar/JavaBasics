@@ -7,12 +7,13 @@ import com.ibm.model.Machine;
 public class MyCallable implements Callable<String> {
 
 	private int task;
-	public MyCallable(int task) {
+	private Machine machine;
+	public MyCallable(int task,Machine machine) {
 		this.task = task;
+		this.machine = machine;
 	}
 	@Override
 	public String call() throws Exception {
-		Machine machine = new Machine();
 		String result = null;
 		switch(this.task){
 		case 1:

@@ -39,6 +39,7 @@ public class CyclicBarrierExp {
         sixth.start();
         seventh.start();
         eighth.start();
+        //second.interrupt();
         
         System.out.println(Thread.currentThread().getName() + " has finished");
 
@@ -60,8 +61,7 @@ class Party extends Thread {
     public void run() {
         try {
             Thread.sleep(duration);
-            System.out.println(Thread.currentThread().getName() + " is calling await()");
-            barrier.await();
+            System.out.println(Thread.currentThread().getName() + " is calling await() "+barrier.await());
             System.out.println(Thread.currentThread().getName() + " has started running again");
         } catch (InterruptedException | BrokenBarrierException e) {
             e.printStackTrace();

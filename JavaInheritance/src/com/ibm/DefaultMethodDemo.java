@@ -15,10 +15,10 @@ public class DefaultMethodDemo {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Interviewer inv = new Manager();
+		Interviewer inv = null;/* = new Manager();*/
 		inv.defultMethod();
 		Interviewer.bookConferenceNumber();
-		inv.normalMethod();
+		//inv.normalMethod();
 		
 	}
 
@@ -46,7 +46,7 @@ class Manager implements Interviewer{
 	}
 	@Override
 	public void defultMethod(){
-		//System.out.println("this is child default method");
+		System.out.println("this is child default method");
 	}
 	
 }

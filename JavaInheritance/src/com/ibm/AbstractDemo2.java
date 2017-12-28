@@ -61,3 +61,12 @@ class Child1 extends Abst1{
 	}
 	
 }
+
+interface Int1{
+	void method1();
+}
+abstract class AbInt1{
+	void method2(){
+		
+	}
+}

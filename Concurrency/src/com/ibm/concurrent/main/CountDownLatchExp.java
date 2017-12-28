@@ -22,13 +22,13 @@ public class CountDownLatchExp {
         second.start();
         third.start();
         fourth.start();
-        System.out.println("main is waiting");
+        //System.out.println("main is waiting");
         // Main thread will wait until all thread finished
-        latch.await();
+        //latch.await();
         
-        System.out.println("main is running");
+       // System.out.println("main is running");
         
-        latch.countDown();
+        //latch.countDown();
         
         System.out.println(Thread.currentThread().getName() + " has finished >>"+latch.getCount());
 
@@ -53,8 +53,9 @@ class Worker extends Thread {
         	/* deadlock */
         	//latch.await();
             Thread.sleep(delay);
+        	System.out.println(Thread.currentThread().getName()+" before calling countdown  >> "+latch.getCount());
             latch.countDown();
-            System.out.println(Thread.currentThread().getName()+" called countdown  >> "+latch.getCount());
+            System.out.println(Thread.currentThread().getName()+" after calling countdown  >> "+latch.getCount());
             latch.await();
             System.out.println(Thread.currentThread().getName() + " has finished");
         } catch (InterruptedException e) {

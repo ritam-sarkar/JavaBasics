@@ -17,54 +17,66 @@ public class AtomicDemo {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Book b = new Book(1);
-		//b.publishCopy();
-		Thread t1 = new MyThread(b,true);
-		t1.setName("publisher");
-		Thread t2 = new MyThread(b,false);
-		t2.setName("seller");
+		AtomicDemo demo = new AtomicDemo();
+		
+		MyRunnable r = demo.new MyRunnable(0,new AtomicInteger(0), new CustomAtomicInteger(0));
+		Thread t1 = new Thread(r, "Thread1");
+		Thread t2 = new Thread(r,"Thread2");
+		Thread t3 = new Thread(r,"Thread3");
 		t1.start();
 		t2.start();
-		ReentrantReadWriteLock lock;
-	}
-
-}
-
-class Book{	
-	private AtomicInteger copy;
-	
-	public Book(int initial){
-		this.copy = new AtomicInteger(initial);
-	}
-	public void publishCopy(){
-		System.out.println(Thread.currentThread().getName()+" published copy after publish copy count "+this.copy.incrementAndGet());
-	}
-	public void sellCopy(){
-		System.out.println(Thread.currentThread().getName()+" selled after selling copy count   "+this.copy.decrementAndGet());		
-	}
-	
-	public boolean reset(){
-		return this.copy.compareAndSet(this.copy.get(), 10);
-	}
-}
-class MyThread extends Thread{
-	private Book b;
-	private boolean isPublisher;
-	public MyThread(Book b,boolean isPublisher){
-		this.b = b;
-		this.isPublisher = isPublisher;
-	}
-	public void run(){
-		for(int i=0;i<5;i++){
-			if(isPublisher){
-				this.b.publishCopy();
-			}else{
-				this.b.sellCopy();
-			}			
-			/*if(!this.b.reset()){
-				System.out.println(" reset not successful");
-			}*/
+		t3.start();
+		try {
+			t1.join();
+			t2.join();
+			t3.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}		
+		System.out.println(" normal count "+r.getCounter());
+		System.out.println(" atomic counter "+r.getAtomicCount());
+		System.out.println(" custom counter "+r.getCustomCounter());
+		
+		
 	}
+	class MyRunnable implements  Runnable {
+
+		private int counter;
+		private AtomicInteger atomicCounter;
+		private CustomAtomicInteger customCounter;
+		
+		public MyRunnable(int counter,AtomicInteger atomicCounter,CustomAtomicInteger customCounter) {
+			super();
+			this.counter = counter;
+			this.atomicCounter = atomicCounter;
+			this.customCounter = customCounter;
+		}
+
+		@Override
+		public void run() {
+			
+			for(int i=1;i<5;i++){
+				try {
+					Thread.sleep(i*100);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				counter++;
+				atomicCounter.incrementAndGet();
+				customCounter.increamentAndGet();
+			}
+		}
+		public int getCounter(){
+			return counter;
+		}
+		public int getAtomicCount(){
+			return atomicCounter.get();
+		}
+		public int getCustomCounter(){
+			return customCounter.get();
+		}
+		
+	}
+
 }
+

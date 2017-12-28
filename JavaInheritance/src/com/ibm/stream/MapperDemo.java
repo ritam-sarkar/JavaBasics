@@ -3,6 +3,8 @@
  */
 package com.ibm.stream;
 
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,6 +39,7 @@ public class MapperDemo {
 		
 		Stream<Employee> empStream = Stream.of(e1,e2,e3,e4);
 		Function<String,Integer> mapperString = String :: hashCode;
+		
 		int hashCode = stringStream.map(mapperString).findAny().orElse(0);
 		//String value = stringStream.map(String :: toUpperCase).findAny().orElse("");
 		Function<Employee,String> mapperEmp = Employee :: getName;
