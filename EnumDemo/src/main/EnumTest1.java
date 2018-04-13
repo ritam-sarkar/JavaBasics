@@ -16,7 +16,7 @@ public class EnumTest1 {
 	 */
 	public static void main(String[] args) {
 
-		System.out.println(Level.BEGINEER.ordinal());
+		System.out.println(Level.INTERMEDIATE.ordinal());
 		System.out.println(Level.BEGINEER);
 		System.out.println(Level.BEGINEER.name());
 		System.out.println(Level.BEGINEER.compareTo(Level.INTERMEDIATE));
