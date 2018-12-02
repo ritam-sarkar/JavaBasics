@@ -9,18 +9,18 @@ public class TryCatchFinallyDemo {
 	public static void main(String[] args) throws FileNotFoundException {
 		TryCatchFinallyDemo obj = new TryCatchFinallyDemo();
 		// TODO Auto-generated method stub
-        System.out.println(new TryCatchFinallyDemo().test());
-        obj.emptyException();
+        System.out.println(new TryCatchFinallyDemo().test(10));
+        //obj.emptyException();
 	}
-	public  int  test() throws FileNotFoundException{
-		int a =10;
+	public  int  test(int a) throws FileNotFoundException{
+		a =10;
 		try{
 			
 			/*String s = null;
 			s.toString();*/
 			a=20;
-			//throw new IOException();
-            return a;
+			throw new FileNotFoundException();
+           // return a;
 		}finally{
 			a=40;
 		}

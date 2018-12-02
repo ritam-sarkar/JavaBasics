@@ -27,7 +27,7 @@ public class FileNameFinder {
 		ActorSystem actorSystem = ActorSystem.create();
 		
 		ActorRef controller = actorSystem.actorOf(new Props(FileSerachController.class),"controller");
-		controller.tell(new SearchMessage("D:\\Repo\\pgbu_platform-2.0", 1));
+		controller.tell(new SearchMessage("C:\\Users\\ritsarka\\pgbu_platform-2.0", 1));
 	}
 
 }

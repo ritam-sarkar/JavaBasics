@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.singleton;
+package com.design.creational.singleton;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * @author Ritam
@@ -22,10 +24,13 @@ public class SimpleSingleton {
 	 * @throws IOException 
 	 * @throws FileNotFoundException 
 	 * @throws ClassNotFoundException 
+	 * @throws InvocationTargetException 
+	 * @throws IllegalArgumentException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
 	 
 	 */
-	public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
-		// TODO Auto-generated method stub
+	public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		BillPoughSingleton ins = BillPoughSingleton.getInstance();
 		ins.display();
 		
@@ -40,6 +45,20 @@ public class SimpleSingleton {
 		System.out.println(serializSingleton.hashCode());
 		oi.close();
 		os.close();
+		
+		/* Reflection
+		 * 
+		 *  In place of LazySingleton if we use EnumSingleton there will be a Illegal argument exception, cannot create enum object through reflection
+		 *  
+		 *  */
+		
+		Constructor[] constructors = LazySingleton.class.getDeclaredConstructors();
+		constructors[0].setAccessible(true);
+		LazySingleton reflectSingleton1 = (LazySingleton) constructors[0].newInstance();
+		LazySingleton reflectSingleton2 = (LazySingleton) constructors[0].newInstance();
+		System.out.println("after reflection firstobject == second object "+(reflectSingleton1 == reflectSingleton2));
+		System.out.println("first object hashcode "+reflectSingleton1.hashCode()+" second object hashcode "+reflectSingleton2.hashCode());
+			
 		
 		/* enum */
 		EnumSingleton.INSTANCE.display();
@@ -100,7 +119,7 @@ class EagerInitialization{
 
 class LazySingleton{
 	private LazySingleton(){}
-	private static LazySingleton instance = null;
+	private static volatile LazySingleton instance = null;
 	public LazySingleton getInstance(){
 		if(instance == null){
 			instance = new LazySingleton();
