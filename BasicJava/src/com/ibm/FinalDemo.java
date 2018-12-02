@@ -23,7 +23,7 @@ public class FinalDemo {
 class A{
 	 final int i;
 	 static final int j;
-	public void print(){
+	public void print() {
 		
 		System.out.println(i);
 	}
