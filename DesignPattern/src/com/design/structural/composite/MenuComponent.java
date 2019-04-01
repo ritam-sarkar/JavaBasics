@@ -15,7 +15,9 @@ public abstract class MenuComponent {
 	protected List<MenuComponent> menucomponents;
 	protected String name;
 	protected String url;
-	public MenuComponent() {
+	public MenuComponent(String name, String url) {
+		this.name = name;
+		this.url = url;
 		this.menucomponents = new ArrayList<MenuComponent>();
 	}
 	public List<MenuComponent> getMenucomponents() {

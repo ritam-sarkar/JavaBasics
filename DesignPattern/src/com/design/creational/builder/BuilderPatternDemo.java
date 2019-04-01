@@ -15,8 +15,8 @@ package com.design.creational.builder;
 public class BuilderPatternDemo {
 
 	public static void main(String[] args) {
-		callMutableClass();
-		callComplexConstructor();
+		//callMutableClass();
+		//callComplexConstructor();
 		callBuilder();
 
 	}
@@ -24,11 +24,19 @@ public class BuilderPatternDemo {
 	 *  This call provide immutability, simple constructor set up
 	 */
 	private static void callBuilder() {
-		PizzaBuilder.Builder builder = new PizzaBuilder.Builder();
-		builder.bread("Extra cheese").topping("Peprony chicken").type("Non veg");
-		PizzaBuilder pizzaBuilder = builder.build();
-		System.out.println("calling builder class");
-		System.out.println(pizzaBuilder.getBread()+"  "+pizzaBuilder.getTopping()+"  "+pizzaBuilder.getType());
+		PizzaBuilder pb1 = new PizzaBuilder();
+		pb1.bread("Thin crust", 150);
+		pb1.nonvegTopping("Chicken", 200);
+		Pizza pizza1 = pb1.build();
+		PizzaBuilder pb2 = new PizzaBuilder();
+		pb2.bread("Normal ", 100);
+		pb2.nonvegTopping("Mutton ", 300);
+		pb2.vegTopping("Paneer ", 250);
+		Pizza pizza2 = pb2.build();
+		System.out.println(" Pizza 1 "+ pizza1.getBread()+" "+pizza1.getNonvegTopping()+" "+pizza1.getVegTopping()+" "+pizza1.getPrice());
+		System.out.println(" Pizza 2 "+ pizza2.getBread()+" "+pizza2.getNonvegTopping()+" "+pizza2.getVegTopping()+" "+pizza2.getPrice());
+		
+		
 		
 		
 	}
@@ -46,12 +54,12 @@ public class BuilderPatternDemo {
 	}
 
 	private static void callMutableClass() {
-		Pizza pizza = new Pizza();
+		/*Pizza pizza = new Pizza();
 		pizza.setBread("thin crust");
 		pizza.setTopping("corn");
 		pizza.setType("Veg");
 		System.out.println("calling mutable class");
-		System.out.println(pizza.getBread()+"  "+pizza.getTopping()+"  "+pizza.getType());
+		System.out.println(pizza.getBread() + "  " + pizza.getTopping() + "  " + pizza.getType());*/
 		
 	}
 

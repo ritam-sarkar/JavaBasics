@@ -89,11 +89,9 @@ class Book extends Item{
 	public int getNumberofPages() {
 		return numberofPages;
 	}
-
 	public void setNumberofPages(int numberofPages) {
 		this.numberofPages = numberofPages;
-	}
-	
+	}	
 }
 class Dvd extends Item{
 	private double runTime;

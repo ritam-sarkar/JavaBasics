@@ -11,7 +11,6 @@ import java.util.Observer;
  *
  */
 public class CustomObserver2 implements Observer {
-
 	
 	@Override
 	public void update(Observable o, Object arg) {

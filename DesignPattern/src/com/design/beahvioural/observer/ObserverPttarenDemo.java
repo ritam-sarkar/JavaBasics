@@ -28,7 +28,6 @@ public class ObserverPttarenDemo {
 
 }
 abstract class MyObservable{
-
 	private Set<MyObserver> observers = new HashSet<MyObserver>();
 	public void notifyObservers() {
 		if(!observers.isEmpty()) {

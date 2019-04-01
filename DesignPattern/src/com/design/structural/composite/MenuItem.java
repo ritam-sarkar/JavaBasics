@@ -1,18 +1,14 @@
 package com.design.structural.composite;
 
 public class MenuItem extends MenuComponent {
-
 	
 	public MenuItem(String name, String url) {
-		this.name = name;
-		this.url = url;
+		super(name,url);		
 	}
 
 	@Override
 	public String toString() {
 		return print(this);
-	}
-	
-	
+	}	
 
 }

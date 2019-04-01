@@ -17,7 +17,7 @@ public class CustomObservable extends Observable{
 	}
 	public void method1() {
 		this.id = 6;
-		System.out.println(" call abserver ");
+		System.out.println(" call observer ");
 		setChanged();
 	}
 	public void method2() {

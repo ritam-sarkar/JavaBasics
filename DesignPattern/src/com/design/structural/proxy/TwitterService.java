@@ -9,6 +9,7 @@ package com.design.structural.proxy;
  */
 public interface TwitterService {
 	
-	public void post(String content);
+	public void post(String param1, String param2);
+	public void comment(String param1);
 
 }

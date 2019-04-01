@@ -18,7 +18,7 @@ public class SecurityProxy implements InvocationHandler{
 	}
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-		System.out.println("before method call"+" method name "+method.getName()+" "+method.getParameters());
+		System.out.println("before method call"+" method name "+method.getName()+" "+method.getParameterCount());
 		method.invoke(twitterService, args);
 		System.out.println(" after method call"+args[0].toString());
 		return null;

@@ -10,26 +10,34 @@ package com.design.creational.builder;
 public class Pizza {
 	
 	private String bread;
-	private String topping;
-	private String type;
+	private String nonvegTopping;
+	private String vegTopping;	
+	private double price;
 	public String getBread() {
 		return bread;
 	}
 	public void setBread(String bread) {
 		this.bread = bread;
+	}		
+	public double getPrice() {
+		return price;
 	}
-	public String getTopping() {
-		return topping;
+	public void setPrice(double price) {
+		this.price = price;
 	}
-	public void setTopping(String topping) {
-		this.topping = topping;
+	public String getNonvegTopping() {
+		return nonvegTopping;
 	}
-	public String getType() {
-		return type;
+	public void setNonvegTopping(String nonvegTopping) {
+		this.nonvegTopping = nonvegTopping;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public String getVegTopping() {
+		return vegTopping;
 	}
+	public void setVegTopping(String vegTopping) {
+		this.vegTopping = vegTopping;
+	}
+	
 	
 
 }

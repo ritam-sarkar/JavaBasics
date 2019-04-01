@@ -15,7 +15,8 @@ public class DefaultMethodDemo {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		Interviewer inv = null;/* = new Manager();*/
+		Interviewer inv =  new Manager();
+		inv.normalMethod();
 		inv.defultMethod();
 		Interviewer.bookConferenceNumber();
 		//inv.normalMethod();
@@ -30,6 +31,7 @@ interface Interviewer {
 	}
 	default void defultMethod(){
 		System.out.println("This is default method");
+		bookConferenceNumber();
 	}
 	/*default public static void  defualtStaticMethod(){
 		System.out.println("This is static default method");
@@ -42,11 +44,17 @@ class Manager implements Interviewer{
 	@Override
 	public void normalMethod() {
 		System.out.println("This is normal method");
+		defultMethod();
+        //bookConferenceNumber();
 		
 	}
-	@Override
+	public static void staticClassMethod() {
+		//bookConferenceNumber();
+		//defultMethod();
+	}
+	/*@Override
 	public void defultMethod(){
 		System.out.println("this is child default method");
-	}
+	}*/
 	
 }

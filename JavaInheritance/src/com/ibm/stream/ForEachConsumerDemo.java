@@ -15,7 +15,6 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.ibm.stream.MapperDemo.Employee;
 
 /**
  * @author Ritam
@@ -64,40 +63,42 @@ public class ForEachConsumerDemo {
 	                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
 	                        (oldValue, newValue) -> oldValue, LinkedHashMap::new));
 		System.out.println(sortedmapWithVal);
+	}	
+
+}
+ class Employee{
+	int id;
+	long salary;
+	String name;
+	public Employee(int id, long salary, String name) {
+		super();
+		this.id = id;
+		this.salary = salary;
+		this.name = name;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public long getSalary() {
+		return salary;
+	}
+	public void setSalary(long salary) {
+		this.salary = salary;
+	}
+	public String getName() {
+		return name;
+	}
+	public void printName(){
+		System.out.println(name);
+	}
+	public void printNameWithArgument(Employee e) {
+		System.out.println(e.name);
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
-	static class Employee{
-    	int id;
-    	long salary;
-    	String name;
-		public Employee(int id, long salary, String name) {
-			super();
-			this.id = id;
-			this.salary = salary;
-			this.name = name;
-		}
-		public int getId() {
-			return id;
-		}
-		public void setId(int id) {
-			this.id = id;
-		}
-		public long getSalary() {
-			return salary;
-		}
-		public void setSalary(long salary) {
-			this.salary = salary;
-		}
-		public String getName() {
-			return name;
-		}
-		public void printName(){
-			System.out.println(name);
-		}
-		public void setName(String name) {
-			this.name = name;
-		}
-    	
-    }
-
 }

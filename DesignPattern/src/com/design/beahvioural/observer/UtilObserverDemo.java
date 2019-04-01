@@ -10,6 +10,7 @@ public class UtilObserverDemo {
 		customObservable.addObserver(customObserver1);
 		customObservable.addObserver(customObserver2);
 		customObservable.method1();
+		customObservable.method2();
 	}
 
 }

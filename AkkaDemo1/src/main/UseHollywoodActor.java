@@ -20,8 +20,7 @@ public class UseHollywoodActor {
 	 * @throws InterruptedException 
 	 */
 	public static void main(String[] args) throws InterruptedException {
-		// TODO Auto-generated method stub
-		ActorSystem system = ActorSystem.create();
+		ActorSystem system = ActorSystem.create("Actor system");
 		ActorRef johnyDepp = system.actorOf(new Props(HollywoodActor.class), "Johny");
 		ActorRef tomHanks = system.actorOf(new Props(HollywoodActor.class), "Tomhanks");
 		ActorRef leo = system.actorOf(new Props(HollywoodActor.class), "Leo");		
@@ -31,6 +30,7 @@ public class UseHollywoodActor {
 		Thread.sleep(1000);
 		leo.tell("inception");
 		system.shutdown();
+		
 	}
 
 }
