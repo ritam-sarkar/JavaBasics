@@ -21,6 +21,7 @@ public class LocalInnerDemo {
 }
 class LocalOuter{
 	int x=9;
+	static int y = 10;
 	public void m(){
 		int y=2;
 		System.out.println("Inside method m()");

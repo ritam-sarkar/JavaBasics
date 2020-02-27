@@ -9,6 +9,7 @@ package enums;
  */
 public enum Level{
 	BEGINEER("begineer"),INTERMEDIATE("intermediate"),PRO("pro");
+	
 	static{
 		System.out.println("static init block");
 	}
@@ -27,6 +28,7 @@ public enum Level{
 	public static Level valueOf(String value){
 		
 	}*/
+	
 	@Override
 	public String toString(){
 		return this.value();

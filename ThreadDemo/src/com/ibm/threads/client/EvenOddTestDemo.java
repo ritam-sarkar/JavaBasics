@@ -3,10 +3,10 @@ public class EvenOddTestDemo {
 
     public static void main(String []  args) {
         Calculator cal = new Calculator();
-        Thread t1 = new Thread(new EvenOdd(cal, 10, false));
-        Thread t2 = new Thread(new EvenOdd(cal, 10, true));
-        t1.start();
-        t2.start();
+        Thread odd = new Thread(new EvenOdd(cal, 100, false));
+        Thread even = new Thread(new EvenOdd(cal, 100, true));
+        odd.start();
+        even.start();
     }
 
 }
@@ -15,38 +15,39 @@ class EvenOdd implements Runnable {
 
     private int max;
     private Calculator cal;
-    private boolean isEvenNumber;
+    private boolean isEven =false;
 
-    EvenOdd(Calculator cal, int max, boolean isEvenNumber) {
+    EvenOdd(Calculator cal, int max, boolean isEven) {
         this.cal = cal;
         this.max = max;
-        this.isEvenNumber = isEvenNumber;
+        this.isEven = isEven;
     }
 
     @Override
     public void run() {
-        int number = isEvenNumber == true ? 2 : 1;
+        int number = isEven ? 2 : 1;
         while (number <= max) {
-
-            if (isEvenNumber) {
+            if (isEven) {
                 cal.printEven(number);
             } else {
                 cal.printOdd(number);
             }
             number += 2;
         }
-
     }
 
 }
 
 class Calculator {
 
-    boolean isOdd = false;
+    boolean isEven = false;
 
+    public boolean isEven() {
+    	return isEven;
+    }
     synchronized void printEven(int number) {
 
-        while (isOdd == false) {
+        while (!isEven) {
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -54,12 +55,12 @@ class Calculator {
             }
         }
         System.out.println("Even:" + number);
-        isOdd = false;
+        isEven = !isEven;
         notify();
     }
 
     synchronized void printOdd(int number) {
-        while (isOdd == true) {
+        while (isEven) {
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -67,7 +68,7 @@ class Calculator {
             }
         }
         System.out.println("Odd:" + number);
-        isOdd = true;
+        isEven = !isEven;
         notify();
     }
 

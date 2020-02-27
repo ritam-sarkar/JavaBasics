@@ -3,12 +3,17 @@
  */
 package com.ibm;
 
+import java.io.IOException;
+
+import com.sun.xml.internal.bind.v2.runtime.unmarshaller.ChildLoader;
+
 /**
  * @author Ritam
  *
  */
 public class TypeCastingDemo {
 
+	
 	/**
 	 * @param args
 	 */
@@ -21,8 +26,34 @@ public class TypeCastingDemo {
         Manager1  mng = new Manager1();
         System.out.println(((Employee1)mng).empid);
         
+        // parent child downcasting
+        Parent parent = new Child1();
+        Child1 child1 = (Child1)parent; 
+        
+        
         
 	}
+	static class Parent{
+		
+	}
+	static class Child1 extends Parent{
+		
+	}
+	static class Child2 extends Parent{
+		
+	}
+	static abstract class Abstract1{
+		public Abstract1() {
+			
+		}
+	}
+	static abstract class ChildAbstract1 extends Abstract1{
+		
+	}
+	static class Concreate extends ChildAbstract1{
+		
+	}
+	
 
 }
 interface Interviewer1{

@@ -15,7 +15,6 @@ public class ExceptionDemo1 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
       String s = new A().method1();
      System.out.println(s);
       System.out.println(new A().method2().a);
@@ -30,7 +29,15 @@ class CustomObject{
 }
 
 class A{
-	
+	/**
+	 * Flow of execution
+	 * 1. find a exception in try block, do not execute anything after that and go to the relevant catch block
+	 * 2. After catch block execution go to finally block
+	 * 3. If we return anything inside catch block and assign it again in finally block then there will be two copies of the same object.
+	 *    If it is a primitive value or immutable class then finally cannot modify the value, if it is an object or mutable class it can modify the value.
+	 *     
+	 * 
+	 */
 	public String method1(){
 		String x = null;
 		CustomObject ob = new CustomObject();
@@ -38,10 +45,7 @@ class A{
 			System.out.println("try block");
 			x = "XX";			
 			throw new CustomException();
-			//throw new FileNotFoundException();
-
-			//return "try";
-
+			
 		}catch(CustomException e){
 			System.out.println("catch block");			
 			return x;

@@ -2,23 +2,29 @@ package com.design.creational.builder;
 
 public class PizzaBuilder {	
 
-	private Pizza pizza;
+	private String bread;
+	private String nonvegTopping;
+	private String vegTopping;	
+	private double price;
+	
 	public PizzaBuilder() {
-		pizza = new Pizza();		
 	}
-	public void bread(String bread, double price) {
-		pizza.setBread(bread);
-		pizza.setPrice(pizza.getPrice()+price);
+	public PizzaBuilder bread(String bread, double price) {
+		this.bread = bread;
+		price += price;
+		return this;
 	}
-	public void nonvegTopping(String topping, double price) {
-		pizza.setNonvegTopping(topping);
-		pizza.setPrice(pizza.getPrice()+price);
+	public PizzaBuilder nonvegTopping(String topping, double price) {
+		this.nonvegTopping = topping;
+		this.price += price;
+		return this;
 	}
-	public void vegTopping(String topping, double price) {
-		pizza.setVegTopping(topping);
-		pizza.setPrice(pizza.getPrice()+price);
+	public PizzaBuilder vegTopping(String topping, double price) {
+		this.vegTopping = topping;
+		this.price += price;
+		return this;
 	}
 	public Pizza build() {
-		return pizza;
+		return new Pizza(bread, nonvegTopping, vegTopping, price);
 	}
 }

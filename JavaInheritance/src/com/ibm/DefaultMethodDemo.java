@@ -51,6 +51,8 @@ class Manager implements Interviewer{
 	public static void staticClassMethod() {
 		//bookConferenceNumber();
 		//defultMethod();
+		Interviewer interviewer = new Manager();
+		interviewer.defultMethod();
 	}
 	/*@Override
 	public void defultMethod(){

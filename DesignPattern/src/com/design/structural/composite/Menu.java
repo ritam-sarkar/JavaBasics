@@ -16,20 +16,20 @@ public class Menu extends MenuComponent {
 	}
 	@Override
 	public String toString() {
-		System.out.println(print(this));
-		Iterator<MenuComponent> itr = menucomponents.iterator();
 		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append(print());
+		
+		Iterator<MenuComponent> itr = menucomponents.iterator();		
 		while(itr.hasNext()) {
 			MenuComponent menuComponent = itr.next();
-			strBuilder.append(print(menuComponent));
+			strBuilder.append(menuComponent.toString());
 		}
 		
 		return strBuilder.toString();
 	}
 
-	protected MenuComponent add(MenuComponent menucomponenet) {
+	protected void add(MenuComponent menucomponenet) {
 		menucomponents.add(menucomponenet);
-		return menucomponenet;
 	}
 
 	protected MenuComponent remove(MenuComponent menuComponent) {

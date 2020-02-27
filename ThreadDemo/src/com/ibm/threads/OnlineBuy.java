@@ -12,6 +12,7 @@ import com.ibm.model.Book;
 public class OnlineBuy implements Runnable {
 
 	private Book book;
+	
 	@Override
 	public void run() {
 

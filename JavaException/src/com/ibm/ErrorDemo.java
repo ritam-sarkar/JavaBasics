@@ -20,19 +20,20 @@ public class ErrorDemo {
         //new ErrorDemo().method1();
 		new ErrorDemo().method2();
 	}
-	public void method1() throws StackOverflowError{
+	public void method1() {
 		try {
 			System.out.println("this is method 1");
 			method1();
 		} catch (Error e) {
-			System.out.println("inside catch");
+			System.out.println(" inside catch");
 		}
 		
 	}
 	public void method2() {
 		System.out.println("this is method 2");
-		throw new NullPointerException();
+		method1();	
 		
 	}
+	
 
 }

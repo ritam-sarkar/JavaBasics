@@ -4,6 +4,11 @@ import java.util.Date;
 
 public class StrategyPatternDemo {
 
+	/**
+	 * Please go through this link to convert switch case to strategy pattern
+	 * https://www.developer.com/java/data/seven-ways-to-refactor-java-switch-statements.html
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		CreditCard card1 = new CreditCard("4111111111111111", 123, new Date(2023-1900, 3, 12));

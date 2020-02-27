@@ -19,12 +19,12 @@ public class ListDemo {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		List<String> list = new ArrayList<String>();
-		list.add("abc");
-		list.get(1);
-		Deque<String> queue = new LinkedList<String>();
 		
-		
+		LinkedList<String> queue = new LinkedList<String>();
+		queue.add(null);
+		queue.add("abc");
+        System.out.println(queue.get(1));
+       
 
 	}
 

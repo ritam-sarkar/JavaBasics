@@ -29,6 +29,9 @@ public class AbstractDemo {
 	  static   void drink(){ System.out.println(" drinks water ");} 
 	public Animal(){ System.out.println(" this is animal  class");}
 	abstract void printName();
+	final void f1() {
+		
+	}
 	
 }
 class Tiger extends Animal{
@@ -46,4 +49,5 @@ class Tiger extends Animal{
 	static void drink(){
 		System.out.println(" drinks blood ");
 	}
+	
 }

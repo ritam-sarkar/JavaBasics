@@ -56,7 +56,7 @@ public class LockInterruptedlyDemo {
 				System.out.println(Thread.currentThread().getName()+" acquired the lock");
 				Thread.sleep(1000);
 				System.out.println(Thread.currentThread().getName()+" woke up after sleep still acquired the lock");
-			} catch (Exception e) {
+			} catch (InterruptedException e) {
 				System.out.println(Thread.currentThread().getName()+" in exception block ");
 			}finally{
 				if(lock.isHeldByCurrentThread())

@@ -12,6 +12,7 @@ import java.io.OutputStream;
  *Also called wrapper
  *Add behavior without affecting others
  *Example {@link OutputStream}  {@link InputStream}
+ *Example Collections.synchronizedList is another example of decorator pattern
  *
  */
 public class DecoratorPatternDemo {

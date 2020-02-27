@@ -4,18 +4,27 @@ public class AmbiguityDemo {
 
 	public static void main(String[] args) {
 		Object ref = new int[]{1,2,3,4};
-		//Object[] obs = new int[]{1,2,3,4};
-		OverloadedMethod1 obj1 = new OverloadedMethod1();
-		OverloadedMethod2 obj2 = new OverloadedMethod2();
+		char[] charArray = {'a','b'};
+		Character[] charArrayBox = new Character[2];
+		int[] intArray =  {1,2};
+		OverloadedDemo1 obj1 = new OverloadedDemo1();
+		OverloadedDemo2 obj2 = new OverloadedDemo2();
 		OverLoadDemo3 obj3 = new OverLoadDemo3();
-		obj3.test('a');
-		obj2.test(1);
-        //obj.test(null);
 		
+		obj1.test(charArray); // print Char
+		obj1.test(intArray); // Print Object
+		obj1.test(charArrayBox); // print Oject
+		obj1.test(2); // print Int
+		
+		obj3.test(3);  // Int
+		obj3.test(2l); // long
+		// If double method is commented, it won't call float method by default, so CE will happen
+		obj3.test(12.0); // double
+		obj3.test(12.0f); // float
     }
 
 }
-class OverloadedMethod1{     
+class OverloadedDemo1{     
     public void test(Object obj) {
         System.out.println("Object");
     }
@@ -27,7 +36,7 @@ class OverloadedMethod1{
     } 
     
 }
-class OverloadedMethod2{
+class OverloadedDemo2{
 	    /*public void test(long lng) {
 	        System.out.println("Long");
 	    }*/
@@ -66,6 +75,9 @@ class OverLoadDemo3 {
 	 public void test(char c) {
 	        System.out.println("char");
 	   }
+	 public void test(double d) {
+		 System.out.println("double");
+	 }
 	 
 }
 

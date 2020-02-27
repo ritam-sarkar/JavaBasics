@@ -17,6 +17,12 @@ public class StringBuilderDemo {
 
 		StringBuilder sb = new StringBuilder();
 		System.out.println("length "+sb.length()+" capacity"+sb.capacity());
+		sb.append("a").append("b");
+		String s1 = sb.toString();
+		sb.append("c");
+		String s2 = sb.toString();
+		System.out.println(s1 == s2);
+		
 		StringBuilder sb1 = new StringBuilder("abcd");
 		System.out.println("length "+sb1.length()+" capacity"+sb1.capacity());
 		sb1.append("ghjk");
@@ -31,6 +37,7 @@ public class StringBuilderDemo {
 		int intarr[] = new int[51];
 		intarr['1']=2;
 		System.out.println(intarr['1']);
+		
 		
 		
 	}

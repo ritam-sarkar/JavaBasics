@@ -51,10 +51,11 @@ public class MultipleProducerConsumerDemo {
 			}else if(ob instanceof SharedObjectWithLock){
 				ob2 = (SharedObjectWithLock)ob;
 			}
+			if(ob1 != null) {
+				ob1.put(Thread.currentThread().getName());
+			}
 			for(int i=0;i<2;i++){
-				if(ob1 != null){
-					ob1.put(i);
-				}else if(ob2 != null){
+				if(ob2 != null){
 					ob2.put(i);
 				}
 			}
@@ -74,24 +75,25 @@ public class MultipleProducerConsumerDemo {
 			}else if(ob instanceof SharedObjectWithLock){
 				ob2 = (SharedObjectWithLock)ob;
 			}
+			if(ob1 != null){
+				System.out.println(super.getName()+" get the value "+ob1.get());
+			}
 			for(int i=0;i<2;i++){
-				if(ob1 != null){
-					System.out.println(super.getName()+" get the value "+ob1.get());
-				}else if(ob2 != null){
+				if(ob2 != null){
 					System.out.println(super.getName()+" get the value "+ob2.get());
 				}				
 			}
 		}
 	}
 	class SharedObject {
-		private Queue<Integer> queue = new LinkedList<Integer>();
-		
-		public synchronized void put(int i){
+		private Queue<String> queue = new LinkedList<String>();
+		private int capacity =1;
+		public synchronized void put(String i){
 			System.out.println(Thread.currentThread().getName()+" put "+i);
 			queue.add(i);
 			notifyAll();
 		}
-		public synchronized int get(){
+		public synchronized String get(){
 			while(queue.isEmpty()){
 				try {
 					wait();

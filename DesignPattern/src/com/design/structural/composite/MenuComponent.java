@@ -29,9 +29,9 @@ public abstract class MenuComponent {
 	public String getUrl() {
 		return url;
 	}
-	public String print(MenuComponent menuComponent) {
+	public String print() {
 		StringBuilder strBuilder = new StringBuilder();
-		strBuilder.append(menuComponent.getName()).append(" : ").append(menuComponent.getUrl());
+		strBuilder.append(this.getName()).append(" : ").append(this.getUrl());
 		strBuilder.append("\n");
 		return strBuilder.toString();
 	}

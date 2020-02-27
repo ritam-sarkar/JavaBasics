@@ -49,7 +49,7 @@ public class ProducerConsumerBySemaphore {
 	}
 	
 	class Q {
-		private Queue<Integer> queue = new ArrayDeque<Integer>();;
+		private Queue<Integer> queue = new ArrayDeque<Integer>();
 		public void put(int i){
 			try {
 				semProd.acquire();

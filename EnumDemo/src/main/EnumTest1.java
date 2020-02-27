@@ -24,5 +24,6 @@ public class EnumTest1 {
 		System.out.println(Level.values()[2]);
 		System.out.println(Level.BEGINEER.getDeclaringClass().getSimpleName());
 	}
+	
 
 }

@@ -28,10 +28,12 @@ public class ConCurrentHashMapDemo {
 		conCurrentMap.put(3, "C");
 		conCurrentMap.put(4, "D");
 		conCurrentMap.put(5, "E");
+		// can't edit the key
+		conCurrentMap.compute(2, (key,val)->{key = 12;return val;});
 		Iterator<Integer> it = conCurrentMap.keySet().iterator();
 		while(it.hasNext()){
-			System.out.println(conCurrentMap.get(it.next()));
-			conCurrentMap.put(6, "F");
+			Integer key = it.next();
+			System.out.println("key "+key+" "+conCurrentMap.get(key));
 		}
 		
 	}

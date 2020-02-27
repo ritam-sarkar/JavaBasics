@@ -14,23 +14,22 @@ public class CountDownLatchExp {
         
         CountDownLatch latch = new CountDownLatch(4);
         Worker first = new Worker(1000, latch, "WORKER-1");
-        Worker second = new Worker(2000, latch, "WORKER-2");
-        Worker third = new Worker(3000, latch, "WORKER-3");
-        Worker fourth = new Worker(4000, latch, "WORKER-4");
+        Worker second = new Worker(1000, latch, "WORKER-2");
+        Worker third = new Worker(1000, latch, "WORKER-3");
+        Worker fourth = new Worker(1000, latch, "WORKER-4");
         
+        Worker2 fifth = new Worker2(1000, latch, "WORKER-5");
+        Worker2 sixth = new Worker2(1000, latch, "WORKER-6");
+
         first.start();
+        fifth.start();
+        sixth.start();
         second.start();
         third.start();
         fourth.start();
-        //System.out.println("main is waiting");
-        // Main thread will wait until all thread finished
-        //latch.await();
+              
         
-       // System.out.println("main is running");
-        
-        //latch.countDown();
-        
-        System.out.println(Thread.currentThread().getName() + " has finished >>"+latch.getCount());
+       // System.out.println(Thread.currentThread().getName() + " has finished >>"+latch.getCount());
 
     }
 
@@ -49,15 +48,36 @@ class Worker extends Thread {
     @Override
     public void run() {
         try {
-        	System.out.println(Thread.currentThread().getName()+" starts >> "+latch.getCount());
-        	/* deadlock */
-        	//latch.await();
             Thread.sleep(delay);
         	System.out.println(Thread.currentThread().getName()+" before calling countdown  >> "+latch.getCount());
             latch.countDown();
             System.out.println(Thread.currentThread().getName()+" after calling countdown  >> "+latch.getCount());
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+class Worker2 extends Thread {
+	
+	private int delay;
+    private CountDownLatch latch;
+
+    public Worker2(int delay, CountDownLatch latch, String name) {
+        super(name);
+        this.delay = delay;
+        this.latch = latch;
+    }
+
+    @Override
+    public void run() {
+        try {
+            Thread.sleep(delay);
+        	System.out.println(Thread.currentThread().getName()+" waiting at latch calling countdown  >> "+latch.getCount());
             latch.await();
-            System.out.println(Thread.currentThread().getName() + " has finished");
+            System.out.println(Thread.currentThread().getName()+" After countdown stops ");
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

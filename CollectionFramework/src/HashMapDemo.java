@@ -11,6 +11,11 @@ import java.util.Set;
  * @author Ritam
  *
  */
+/**
+ * 
+ *  
+ *
+ */
 public class HashMapDemo {
 
 	/**
@@ -21,30 +26,46 @@ public class HashMapDemo {
 		Map<String,Integer> map = new HashMap<String,Integer>();
 		map.put("a", 1);
 		map.put("a", 2);
+		map.put(null, 3);
+		map.put(null, 4);
 		System.out.println(map.get("a"));
 		Map<Employee,String> empMap = new HashMap<Employee,String>();
-	    Employee emp1 = new Employee();
-	    Employee emp2 = new Employee();
-	    Employee emp3 = new Employee();
-	    emp1.setId(1);
-	    emp2.setId(2);
-	    emp3.setId(3);
+		Set<Employee> empSet = new HashSet<Employee>();
+		
+	    Employee emp1 = new Employee(1,"Emp1");
+	    Employee emp2 = new Employee(2, "Emp2");
+	    Employee emp3 = new Employee(2, "Emp3");	    
 	    empMap.put(emp1, "employee 1");
 	    empMap.put(emp2, "employee 2");
-	    empMap.put(emp3, "employee 3");
-	    Set<Integer> set = new HashSet<Integer>();
-	    set.add(1);	
-	    set.add(null);
-        System.out.println("set size "+set.size());
+	    empMap.put(emp3, "employee 3");	    
+        empSet.add(emp1); empSet.add(emp2); empSet.add(emp3);
 	    for(Map.Entry<Employee, String> entry : empMap.entrySet()){
-	    	System.out.println(entry.getKey().getId());
-	    }		
+	    	System.out.println(entry.getKey().getName());
+	    }	
+	    for(Employee e : empSet) {
+	    	System.out.println(e.getName());
+	    }
 
 	}
 
 }
 class Employee{
 	private int id;
+    private String name;
+    
+	public Employee(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public int getId() {
 		return id;
@@ -56,19 +77,15 @@ class Employee{
 	
 	@Override
 	public int hashCode(){
-		if(this.getId()>1){
-			return 2;
-		}else{
-			return this.getId();
-		}
+		return this.getId();
 	}
 	@Override
 	public boolean equals(Object o){
-		Employee e = (Employee)o;
-		if(this.id == e.getId()){
-			return true;
-		}else{
+		if(o == null) {
 			return false;
+		}else {
+			Employee e = (Employee)o;
+			return this.id == e.getId();
 		}
 	}
 }

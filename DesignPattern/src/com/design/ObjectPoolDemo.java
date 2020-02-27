@@ -3,12 +3,10 @@
  */
 package com.design;
 
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
 
 
 /**
@@ -19,173 +17,115 @@ public class ObjectPoolDemo {
 
 	/**
 	 * @param args
-	 * @throws InterruptedException 
+	 * @throws Exception 
 	 */
-	public static void main(String[] args) throws InterruptedException {
-		ObjectPoolDemo demo = new ObjectPoolDemo();
-		ObjectPool<MyObject> pool = demo.new MyObjectPool(6);
-		Thread t1 = new Thread(demo.new MyRunnable(pool),"Thread1");
-		Thread t2 = new Thread(demo.new MyRunnable(pool),"Thread2");
-		t1.start();
-		t2.start();
-		t1.join();
-		t2.join();		
-		System.out.println(" after pooling pool availablity is "+pool.available());
-		pool.shutdown();
+	public static void main(String[] args) throws Exception {
+		ConnectionPool connectionPool = new ConnectionPool();
+		Random random = new Random();
+		System.out.println(" Initial stage "+connectionPool.getAvailableObject()+" "+connectionPool.getInUseObject());
+		MyConnection con1 = connectionPool.checkOut();
+		MyConnection con2 = connectionPool.checkOut();
+		System.out.println("Con1 is live "+con1.isLive()+" "+connectionPool.getAvailableObject()+" "+connectionPool.getInUseObject());
+		MyConnection con3 = connectionPool.checkOut();
+		System.out.println("Con1 is live "+con3.isLive()+" "+connectionPool.getAvailableObject()+" "+connectionPool.getInUseObject());
+		//MyConnection con4 = connectionPool.checkOut();
+		connectionPool.checkIn(con3);
+		connectionPool.checkIn(con2);
+		System.out.println(" After one connection checked in  "+connectionPool.getAvailableObject()+" "+connectionPool.getInUseObject());
+		
+		// Cannot checkin a new object from outside, only on-demand can be created from the connection pool
+		connectionPool.checkIn(new MyConnection(random.nextInt()));
+		System.out.println(" After creating random checked in  "+connectionPool.getAvailableObject()+" "+connectionPool.getInUseObject());
+		
+		
 	}
 	
-	class MyRunnable implements Runnable{	
+	abstract static class ObjectPool<T> {
+		List<T> inUse, available;
+		static final int CORE_POOL_SIZE = 2;
+		static final int MAX_POOL_SIZE = 3;
 		
-		ObjectPool<MyObject> pool;
-		public MyRunnable(ObjectPool<MyObject> pool) {
-			this.pool = pool;
-		}
-		@Override
-		public void run() {
-			for(int i = 0;i<10;i++){
-				MyObject ob = pool.checkOut();
-				ob.doSomeThing();
-				pool.checkIn(ob);
+
+		ObjectPool() {
+			inUse = new CopyOnWriteArrayList<T>();
+			available = new CopyOnWriteArrayList<T>();
+			for(int i =0; i< CORE_POOL_SIZE ; i++) {
+				available.add(create());
 			}			
 		}
+
+		abstract T create();
+		abstract void makeAvailable(T ob);
+		abstract void makeInUse(T ob);
+
+		void checkIn(T ob) throws Exception {
+			if(available.size() >= MAX_POOL_SIZE) {
+				throw new Exception(" No space");
+			}
+			if(inUse.remove(ob)) {
+				makeAvailable(ob);			
+				available.add(ob);
+			}            			
+		}
+
+		T checkOut() throws Exception {
+			T ob = null;
+			if(available.size() >0) {
+				ob = available.get(0);	
+				available.remove(ob);
+			}else {
+				ob = create();				
+			}
+			makeInUse(ob);
+			if(inUse.size() >= MAX_POOL_SIZE) {
+				throw new Exception("No space");
+			}else {
+				inUse.add(ob);
+			}
+			return ob;
+		}
 		
+		int getInUseObject() {
+			return inUse.size();
+		}
+		int getAvailableObject() {
+			return available.size();
+		}
+
 	}
-	
-	abstract class ObjectPool<T>{
-		
-		BlockingQueue<T> objectQueue;
-		protected abstract void expire(T ob);
-		protected abstract boolean validate(T ob);
-		protected abstract T create();
-		protected Hashtable<T, Long> locked;
-		protected Hashtable<T, Long> unlocked;
-		protected long expireTime;		
-		protected AtomicInteger counter = new AtomicInteger(0);
-		protected AtomicBoolean shutdown = new AtomicBoolean(false);
-		public ObjectPool(int size){
-			objectQueue = new LinkedBlockingQueue<T>(size);
-			long now = System.currentTimeMillis();
-			locked = new Hashtable<T, Long>();
-		    unlocked = new Hashtable<T, Long>();
-			expireTime = 3000;
-			for(int i=0;i<size;i++){
-				T ob = create();
-				objectQueue.add(ob);
-				unlocked.put(ob,now);
-			}   
-		    
-		}
-		protected synchronized T  checkOut(){
-			long now = System.currentTimeMillis();
-			if(!shutdown.get()){
-				T ob;
-				if(unlocked.size()>0){
-					Enumeration<T> e = unlocked.keys();
-					while(e.hasMoreElements()){
-						ob = e.nextElement();
-						if(now - unlocked.get(ob)>expireTime){
-							unlocked.remove(ob);
-							expire(ob);							
-						}else{
-							if(validate(ob)){
-								unlocked.remove(ob);
-								locked.put(ob, now);
-								return ob;
-							}else{
-								unlocked.remove(ob);
-							}
-						}
-					}
-				}
-				try {
-					ob = objectQueue.take();
-					makeAvailable(ob);
-					locked.put(ob, now);
-					return ob;
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-			}else{
-				throw new RuntimeException(" Pool is already shut down");				
-			}
-			return null;			
-		}
-		protected synchronized void checkIn(T ob){
-			if(!shutdown.get()){
-				if(locked.containsKey(ob)){
-					locked.remove(ob);
-				}
-				unlocked.put(ob, System.currentTimeMillis());	
-			}					
-		}		
-		protected void release(){
-			objectQueue.clear();
-			unlocked.clear();
-			locked.clear();
-		}
-		protected void shutdown(){
-			if(!shutdown.compareAndSet(false, true)){
-				throw new RuntimeException(" pool already shutdown");
-			}
-		}
-		protected synchronized int available(){
-			int availableCount =0;
-			if(unlocked.size()>0){
-				Enumeration<T> e = unlocked.keys();
-				while(e.hasMoreElements()){
-					T ob = e.nextElement();
-					if(validate(ob)){
-						availableCount++;
-					}
-				}
-			}
-			return availableCount;
-		}
-		abstract protected void makeAvailable(T ob);
-		
-		
-	}
-	class MyObjectPool extends ObjectPool<MyObject>{
-		
-		public MyObjectPool(int size) {
-			super(size);
-		}
-		
+	static class ConnectionPool extends ObjectPool<MyConnection>{
+
 		@Override
-		protected void expire(MyObject ob) {
+		MyConnection create() {
+			Random random = new Random();			
+			return new MyConnection(random.nextInt());
+		}
+
+		@Override
+		void makeAvailable(MyConnection ob) {
 			ob.close();
 		}
 
 		@Override
-		protected boolean validate(MyObject ob) {
-			return ob.isClosed() ? false : true;
-		}
-
-		@Override
-		protected MyObject create() {
-			return new MyObject(counter.incrementAndGet());
-		}
-
-		@Override
-		protected void makeAvailable(MyObject ob) {
-			ob.open();			
+		void makeInUse(MyConnection ob) {
+			ob.open();
 		}		
-		
 	}
-	class MyObject {
-		AtomicBoolean closed = new AtomicBoolean(false);
+	static class MyConnection {
+		AtomicBoolean live = null;
 		int id;
-		MyObject(int id){
+		MyConnection(int id){
 			this.id = id;
+			this.live = new AtomicBoolean(false);
 		}
 		void close(){
-			closed.compareAndSet(false, true);
+			live.compareAndSet(true, false);
 		}			
-		boolean isClosed(){
-			return closed.get();
+		boolean isLive(){
+			return live.get();
 		}
 		void open(){
-			closed.compareAndSet(true, false);
+			live.compareAndSet(false, true);
 		}
 		void doSomeThing(){
 			System.out.println(this.id+" is called from "+Thread.currentThread().getName());

@@ -27,9 +27,11 @@ public class ArithmeticExceptionDemo {
 		System.out.println(0/0.0);
 		
 	}
+	
 	static{
-		String s = null;
-		System.out.println(s.length());
+		/*String s = null;
+		System.out.println(s.length());*/
 	}
+	
 
 }

@@ -11,67 +11,70 @@ public class PingPongThread {
 
 	/**
 	 * @param args
+	 * @throws InterruptedException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		// for Ping Pong
-		Ball ball = new Ball(1);
-		// for Pong Ping
-		//Ball ball = new Ball(0);		
-		Thread ping = new PingPong("Ping ", 1, ball);
-		Thread pong = new PingPong("Pong ", 0, ball);		
-		pong.start();
-		ping.start();
+		Ball ball = new Ball();
+		Thread pingThread = new PingPong(ball, true);
+		pingThread.setName("Ping");
+		Thread pongThread = new PingPong(ball, false);
+		pongThread.setName("Pong");
+		pongThread.start();
+		Thread.sleep(100);
+		pingThread.start();
+
+		
 	}
 
 }
 class PingPong extends Thread{
+	
 	private Ball ball;
-	private int sound;
-	public PingPong(String name,int sound,Ball ball){
-       super(name);
-       this.ball = ball;
-       this.sound = sound;
+	private boolean ping;
+	public PingPong(Ball ball, boolean ping) {
+		this.ball = ball;
+		this.ping = ping;
 	}
-	@Override
-	public void run(){
-		for(int i=0;i<10;i++){
-			if(this.sound ==1){
+	public void run() {
+		for(int i=0;i<10;i++) {
+			if(ping) {
 				ball.ping();
-			}else{
+			}else {
 				ball.pong();
 			}
 		}
 	}
-	
 }
 class Ball {
-	private int sound=0;
-	public Ball(int sound){
-		this.sound = sound;
+
+	private boolean ping = true;
+	
+	public boolean isPing() {
+		return ping;
 	}
-	public synchronized void ping(){
-		while(sound ==0){
+	public synchronized void ping()  {
+		while(!ping) {
 			try {
 				wait();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}			
+			}
 		}
-		System.out.println(Thread.currentThread().getName()+" prints  Ping ");
-		sound =0;
+		System.out.println(Thread.currentThread().getName()+" prints Ping");
+		ping = !ping;
 		notify();
 	}
-	public synchronized void pong(){
-		while(sound ==1){
+	public synchronized void pong()  {
+		while(ping) {
 			try {
 				wait();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
-			}			
+			}
 		}
-		System.out.println(Thread.currentThread().getName()+" prints Pong ");
-		sound =1;
+		System.out.println(Thread.currentThread().getName()+" prints Pong");
+		ping = !ping;
 		notify();
 	}
 }

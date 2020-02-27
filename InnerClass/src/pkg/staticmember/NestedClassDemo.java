@@ -19,13 +19,14 @@ public class NestedClassDemo {
 		Nested.Inner inner = new Nested.Inner();
 		inner.dispaly();
 		Nested.MemberInner memInner = nested.new MemberInner();
-		AnonymousInner anInner = new AnonymousInner()/*{
+		AnonymousInner anInner = new AnonymousInner(){
 			public void method(){
 				System.out.println(" inside anonymous");
 			}
-		}*/;
+		};
 		
 		anInner.method();
+		System.out.println(anInner.getClass().getName());
 		System.out.println(anInner.getClass().getSuperclass().getName());
 		
 	    
@@ -56,7 +57,7 @@ class Nested{
 	}
 	
 }
- class AnonymousInner{
+ class AnonymousInner {
 
 	public void method() {
 		System.out.println(" inside anonymous");

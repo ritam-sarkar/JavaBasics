@@ -13,6 +13,15 @@ public class Pizza {
 	private String nonvegTopping;
 	private String vegTopping;	
 	private double price;
+	
+	
+	public Pizza(String bread, String nonvegTopping, String vegTopping, double price) {
+		super();
+		this.bread = bread;
+		this.nonvegTopping = nonvegTopping;
+		this.vegTopping = vegTopping;
+		this.price = price;
+	}
 	public String getBread() {
 		return bread;
 	}

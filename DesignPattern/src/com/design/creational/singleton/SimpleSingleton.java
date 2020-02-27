@@ -54,7 +54,7 @@ public class SimpleSingleton {
 		
 		Constructor[] constructors = LazySingleton.class.getDeclaredConstructors();
 		constructors[0].setAccessible(true);
-		LazySingleton reflectSingleton1 = (LazySingleton) constructors[0].newInstance();
+		LazySingleton reflectSingleton1 = (LazySingleton)constructors[0].newInstance();
 		LazySingleton reflectSingleton2 = (LazySingleton) constructors[0].newInstance();
 		System.out.println("after reflection firstobject == second object "+(reflectSingleton1 == reflectSingleton2));
 		System.out.println("first object hashcode "+reflectSingleton1.hashCode()+" second object hashcode "+reflectSingleton2.hashCode());
@@ -83,9 +83,9 @@ class SerializationSingleTon implements Serializable{
 	public static SerializationSingleTon getInstance(){
 		return SerilizationHelper.instance;
 	}
-	/*protected Object readsResolve(){
+	protected Object readsResolve(){
 		return getInstance();
-	}*/
+	}
 }
 class BillPoughSingleton {
 	private static class SingletonHelper{
@@ -118,7 +118,9 @@ class EagerInitialization{
 
 
 class LazySingleton{
-	private LazySingleton(){}
+	private LazySingleton(){
+		throw new IllegalStateException();		
+	}
 	private static volatile LazySingleton instance = null;
 	public LazySingleton getInstance(){
 		if(instance == null){

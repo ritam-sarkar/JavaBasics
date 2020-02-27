@@ -20,7 +20,7 @@ public class UseHollywoodActor {
 	 * @throws InterruptedException 
 	 */
 	public static void main(String[] args) throws InterruptedException {
-		ActorSystem system = ActorSystem.create("Actor system");
+		ActorSystem system = ActorSystem.create("ActorSystem");
 		ActorRef johnyDepp = system.actorOf(new Props(HollywoodActor.class), "Johny");
 		ActorRef tomHanks = system.actorOf(new Props(HollywoodActor.class), "Tomhanks");
 		ActorRef leo = system.actorOf(new Props(HollywoodActor.class), "Leo");		

@@ -4,7 +4,9 @@
 package com.ibm.collection.main;
 
 import java.util.Comparator;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 /**
@@ -23,9 +25,16 @@ public class TreeSetDemo {
 		Set<Student> ts = new TreeSet<>(new StudentIdComparator());
        ts.add(new Student(1, "ritam"));
        ts.add(new Student(1,"sharmistha"));
+       
        for(Student s : ts){
     	   System.out.println(s.getName());
        }
+       
+       Map<Student,String> treeMap = new TreeMap<Student,String>(new StudentIdComparator());
+       treeMap.put(new Student(1, "ritam"), "ritam");
+       treeMap.put(new Student(1, "Sharmistha"), "ritam");
+       System.out.println(treeMap.keySet());
+       
        
 		
 	}

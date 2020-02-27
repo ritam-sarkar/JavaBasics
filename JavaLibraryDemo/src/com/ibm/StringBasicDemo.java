@@ -15,6 +15,10 @@ public class StringBasicDemo {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
        String s1 = " ritam sarkar";
+       String a = "ab";
+       String b = "ab";
+       System.out.println("a==b "+a == b);
+       
        System.out.println(s1.charAt(0));
        System.out.println(s1.indexOf('r')); // pick first occurrence
        System.out.println(s1.indexOf('r',2)); // to is start index
@@ -33,9 +37,15 @@ public class StringBasicDemo {
        //replace
        
        System.out.println(s1.replace('m', 'n')); 
-       System.out.println(s1.replace("ri", "sh")); // ri and sh are not string, they ar charsequence
+       System.out.println(s1.replace("ri", "sh")); // ri and sh are not string, they are charsequence
        String s2 = "ri",s3= "sh";
        System.out.println(s1.replace(s2, s3));
+       
+       // concat
+       String cStr1 = "Abc";
+      // String cStr2 = "BDE";
+       System.out.println(cStr1.concat("BDE"));
+       
       
        
 	}

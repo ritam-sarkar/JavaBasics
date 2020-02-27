@@ -25,16 +25,13 @@ public class BuilderPatternDemo {
 	 */
 	private static void callBuilder() {
 		PizzaBuilder pb1 = new PizzaBuilder();
-		pb1.bread("Thin crust", 150);
-		pb1.nonvegTopping("Chicken", 200);
-		Pizza pizza1 = pb1.build();
+		pb1.bread("Thin crust", 150).nonvegTopping("Chicken", 200);
+		Pizza nonVeg = pb1.build();
 		PizzaBuilder pb2 = new PizzaBuilder();
-		pb2.bread("Normal ", 100);
-		pb2.nonvegTopping("Mutton ", 300);
-		pb2.vegTopping("Paneer ", 250);
-		Pizza pizza2 = pb2.build();
-		System.out.println(" Pizza 1 "+ pizza1.getBread()+" "+pizza1.getNonvegTopping()+" "+pizza1.getVegTopping()+" "+pizza1.getPrice());
-		System.out.println(" Pizza 2 "+ pizza2.getBread()+" "+pizza2.getNonvegTopping()+" "+pizza2.getVegTopping()+" "+pizza2.getPrice());
+		pb2.bread("Normal ", 100).nonvegTopping("Mutton ", 300).vegTopping("Paneer ", 250);
+		Pizza mixPizza = pb2.build();
+		System.out.println(" Nonveg pizza "+ nonVeg.getBread()+" "+nonVeg.getNonvegTopping()+" "+nonVeg.getVegTopping()+" "+nonVeg.getPrice());
+		System.out.println(" Mix pizza  "+ mixPizza.getBread()+" "+mixPizza.getNonvegTopping()+" "+mixPizza.getVegTopping()+" "+mixPizza.getPrice());
 		
 		
 		

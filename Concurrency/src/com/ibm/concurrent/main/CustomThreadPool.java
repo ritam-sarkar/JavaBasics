@@ -3,6 +3,7 @@ package com.ibm.concurrent.main;
 import java.util.HashSet;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 
@@ -22,7 +23,7 @@ public class CustomThreadPool {
 		pool.execute(task3);
 		pool.execute(task4);
 		pool.shutdown();
-		//pool.execute(task2);
+		pool.execute(task2);
 		
 	}
 	class ThreadPool{
@@ -51,7 +52,7 @@ public class CustomThreadPool {
 		 
 		 public ThreadPool(int poolSize){
 			 this.poolSize = poolSize;
-			 workQueue = new ArrayBlockingQueue<Runnable>(this.poolSize);
+			 workQueue = new ArrayBlockingQueue<Runnable>(3);
 			 for(int i =1;i<=poolSize;i++){
 				 Worker w = new Worker("Thread "+i, workQueue, this);
 				 workers.add(w);
@@ -60,52 +61,52 @@ public class CustomThreadPool {
 		 }
 		 
 		 public void execute(Runnable r){
-			 if(this.shutDownFlag.get()){
-				 throw new RuntimeException(" Thread pool is shut down");
-			 }
-			 try {
-				workQueue.put(r);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}				 
+			 if(this.shutDownFlag.get() || !workQueue.offer(r)){
+				 reject(r);
+				 
+			 }	
+			 
 		 }	
 		 public  void shutdown(){
-			 shutDownFlag.compareAndSet(false, true);
-			 if(workers != null){
-				 for(Worker w : workers){
-					 System.out.println(w.getName()+" is interrupted ");
-					 w.interrupt();
-				 }
+			 shutDownFlag.compareAndSet(false, true);	
+			 for(Worker worker : workers) {
+				while(!worker.isAlive()) {
+					worker.interrupt();
+				}
 			 }
 		 }
+		 private void reject(Runnable task) {
+			 RunnableTask runnableTask = (RunnableTask)task;
+			 throw new RejectedExecutionException(" Rejected task id is "+runnableTask.taskid);
+	     }
+		 
+		 class Worker extends Thread{
+		        private BlockingQueue<Runnable> tasks;
+		        private ThreadPool threadPool;
+				public Worker(String name,BlockingQueue<Runnable> tasks,ThreadPool threadPool){
+					super.setName(name);
+					this.tasks = tasks;
+					this.threadPool = threadPool;
+				}
+				public void run(){
+					while(true){
+						Runnable task = tasks.poll();						
+						if(threadPool.shutDownFlag.get()) {
+							reject(task);
+						}else if(task != null){
+							task.run();
+							try {
+								Thread.sleep(1000);
+							} catch (InterruptedException e) {
+								e.printStackTrace();
+							}
+						}				
+					}
+				}		
+			}
 		 
 	}
-	class Worker extends Thread{
-        private BlockingQueue<Runnable> tasks;
-        private ThreadPool threadPool;
-		public Worker(String name,BlockingQueue<Runnable> tasks,ThreadPool threadPool){
-			super.setName(name);
-			this.tasks = tasks;
-			this.threadPool = threadPool;
-		}
-		public void run(){
-			while(true){
-				Runnable task = tasks.poll();
-				if(task != null)
-				  task.run();
-				if(threadPool.shutDownFlag.get() && tasks.isEmpty()){
-					try {						
-						this.interrupt();
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {						
-						System.out.println(this.getName()+" is stopped");
-						break;
-					}					
-					
-				}
-			}
-		}
-	}
+	
 	class RunnableTask implements Runnable{
 
 		private int taskid;

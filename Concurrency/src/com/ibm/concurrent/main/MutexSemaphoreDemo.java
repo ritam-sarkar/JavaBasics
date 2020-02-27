@@ -71,9 +71,10 @@ public class MutexSemaphoreDemo {
 		}
 		public SharedObject(Semaphore semaphore){
 			this.semaphore = semaphore;
+			
 		}
 		public void mutexMethod(){
-			System.out.println(Thread.currentThread().getName()+" tring to acquire lock  ");
+			System.out.println(Thread.currentThread().getName()+" trying to acquire lock  ");
 			try {
 				mutex.acquire();
 				System.out.println(Thread.currentThread().getName()+" got permit");
@@ -85,7 +86,7 @@ public class MutexSemaphoreDemo {
 			
 		}
 		public void semaphoreMethod(){
-			System.out.println(Thread.currentThread().getName()+" tring to acquire lock "+semaphore.availablePermits());
+			System.out.println(Thread.currentThread().getName()+" trying to acquire lock "+semaphore.availablePermits());
 			try {
 				semaphore.acquire();
 				System.out.println(Thread.currentThread().getName()+" got permit "+semaphore.availablePermits());

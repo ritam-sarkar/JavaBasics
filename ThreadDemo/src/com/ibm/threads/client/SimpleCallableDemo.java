@@ -22,7 +22,7 @@ public class SimpleCallableDemo {
 		Callable<String> callable1 = new MyCallable(1,machine);
 		Callable<String> callable2 = new MyCallable(2,machine);
 		Callable<String> callable3 = new MyCallable(3,machine);
-		ExecutorService ex = Executors.newFixedThreadPool(2);
+		ExecutorService ex = Executors.newFixedThreadPool(2); 
 		ex.submit(callable1);
 		ex.submit(callable2);
 		ex.submit(callable3);

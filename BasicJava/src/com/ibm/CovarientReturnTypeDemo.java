@@ -40,6 +40,7 @@ class Child extends Parent{
 	public Child get(){
 		return this;
 	}
+	// Covarient means only the child type return
 	@Override
 	public Integer getN(){
 		System.out.println("This is child mthod");

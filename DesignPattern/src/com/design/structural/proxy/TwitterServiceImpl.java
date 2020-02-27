@@ -12,4 +12,9 @@ public class TwitterServiceImpl implements TwitterService {
 		System.out.println(" First comment ");
 	}
 
+	@Override
+	public String readComment() {
+		return "Comments read";
+	}
+
 }
