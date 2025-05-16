@@ -3,7 +3,9 @@
  */
 package com.riversand.creational.prototype;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,88 +21,66 @@ import java.util.Map;
  * We can achieve this by using clone() method but it will create just another instance of the same object.
  */
 public class PrototypePatternDemo {
+	public static void main(String[] args) {
+		List<String> sections = List.of("Introduction", "Body");
+		Map<String, String> metadata = Map.of("version", "1.0", "status", "draft");
 
-	/**
-	 * @param args
-	 * @throws CloneNotSupportedException 
-	 */
-	public static void main(String[] args) throws CloneNotSupportedException {
-		ItemRegistry itemRegistry = new ItemRegistry();
-		Book book = (Book) itemRegistry.createItem(ItemRegistry.Type.BOOK);
-		Dvd dvd = (Dvd)itemRegistry.createItem(ItemRegistry.Type.DVD);
-		System.out.println("Books data"+book.getName()+" "+book.getPrice()+" "+book.getNumberofPages());
-		System.out.println("DVD data"+dvd.getName()+" "+dvd.getPrice()+" "+dvd.getRunTime());
-		
+		DocumentTemplate original = new DocumentTemplate("Design Doc", "Alice", sections, metadata);
+		DocumentTemplate clone = original.clone();
+
+		// Modify clone
+		clone.addSection("Conclusion");
+		clone.updateMetadata("status", "final");
+
+		System.out.println("=== Original ===");
+		original.print();
+
+		System.out.println("\n=== Clone ===");
+		clone.print();
 	}
+
 
 }
-class ItemRegistry{
-	private Map<Type,Item> items = new HashMap<Type,Item>();
-	public ItemRegistry() {
-		loadItems();
+class DocumentTemplate implements Cloneable {
+	private final String title; // Immutable
+	private final String author; // Immutable
+	private List<String> sections; // Mutable
+	private Map<String, String> metadata; // Mutable
+
+	public DocumentTemplate(String title, String author, List<String> sections, Map<String, String> metadata) {
+		this.title = title;
+		this.author = author;
+		this.sections = new ArrayList<>(sections); // Defensive copy
+		this.metadata = new HashMap<>(metadata);   // Defensive copy
 	}
-	public Item createItem(Type type) throws CloneNotSupportedException {
-		return (Item)items.get(type).clone();
-	}
-	private void loadItems() {
-		
-		Book book = new Book();
-		book.setName("gangs of four");
-		book.setPrice(335L);
-		book.setNumberofPages(1000);
-		items.put(Type.BOOK, book);
-		Dvd dvd = new Dvd();
-		dvd.setName("Gangs of wassepur");
-		dvd.setPrice(100L);
-		dvd.setRunTime(2.54);
-		items.put(Type.DVD, dvd);
-		
-	}
-	public static enum Type{
-		BOOK,DVD;
-	}
-}
-abstract class Item implements Cloneable{
-	
-	private String name;
-	private Long price;
-	public String getName() {
-		return name;
-	}
-	public Long getPrice() {
-		return price;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	public void setPrice(Long price) {
-		this.price = price;
-	}
+
+	// Deep clone
 	@Override
-	public Object clone() throws CloneNotSupportedException {
-		return super.clone();
-	}
-	
-}
-class Book extends Item{
-	private int numberofPages;
-
-	public int getNumberofPages() {
-		return numberofPages;
-	}
-	public void setNumberofPages(int numberofPages) {
-		this.numberofPages = numberofPages;
-	}	
-}
-class Dvd extends Item{
-	private double runTime;
-
-	public double getRunTime() {
-		return runTime;
+	public DocumentTemplate clone() {
+		try {
+			DocumentTemplate copy = (DocumentTemplate) super.clone();
+			// Deep copy mutable fields
+			copy.sections = new ArrayList<>(this.sections);
+			copy.metadata = new HashMap<>(this.metadata);
+			return copy;
+		} catch (CloneNotSupportedException e) {
+			throw new AssertionError("Cloning not supported", e);
+		}
 	}
 
-	public void setRunTime(double runTime) {
-		this.runTime = runTime;
-	}	
+	// Utility methods for demonstration
+	public void addSection(String section) {
+		this.sections.add(section);
+	}
+
+	public void updateMetadata(String key, String value) {
+		this.metadata.put(key, value);
+	}
+
+	public void print() {
+		System.out.println("Title: " + title);
+		System.out.println("Author: " + author);
+		System.out.println("Sections: " + sections);
+		System.out.println("Metadata: " + metadata);
+	}
 }
