@@ -13,7 +13,7 @@ public enum Level{
 	static{
 		System.out.println("static init block");
 	}
-	 String value;
+	String value;
 	Level(){
 		System.out.println("constructor");
 	}
@@ -27,10 +27,15 @@ public enum Level{
 		return this.value;
 	}
 	// This method is called implicitly , cannot override this method
-	/*@Override
-	public static Level valueOf(String value){
-		
-	}*/
+
+	public static Level myValueOf(String x){
+		for (Level l: values()){
+			if(l.value.equalsIgnoreCase(x)){
+				return l;
+			}
+		}
+		return null;
+	}
 	
 	/*@Override
 	public String toString(){
@@ -42,6 +47,7 @@ public enum Level{
 		// enum is by default singleton so constructor and static blocks will be called only one time
 		//System.out.println(Level.PROFICIENT.value);
 		System.out.println(Level.PROFICIENT);
+		System.out.println(Level.myValueOf("intermediate"));
 	}
 	
 

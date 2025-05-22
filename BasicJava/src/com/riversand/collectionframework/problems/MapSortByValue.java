@@ -1,4 +1,4 @@
-package com.riversand.collectionframework;
+package com.riversand.collectionframework.problems;
 
 import java.util.*;
 import java.util.function.Function;

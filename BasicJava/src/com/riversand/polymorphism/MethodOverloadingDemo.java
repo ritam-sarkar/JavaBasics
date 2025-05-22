@@ -12,17 +12,34 @@ public class MethodOverloadingDemo {
 		ticketBoking.book(e); // call Employee
 		ticketBoking.book(c); // call CEO
 
+
+		/**
+		 * remove book(employee) method , as CEO and Engineer are sibling classes of Employee
+		 * in method parameter covarient type is not applicable,
+		 *
+		 */
 		
-		// Remove book method for Employee
-		// cannot pass employee reference to the child class reference covariant type is not allowed in method overloading
-		
-		/*Employee e = new CEO();
-		ticketBokking.book(e);*/
-		
-		
-		
-		
-		
+		/*e = new CEO();
+		ticketBoking.book(e);*/
+		Result result = new Result();
+		result.calcAverage(12.0,1);
+		/*
+		   Here int is typecasting  to double or double is typecasting to int
+		   so compiler will be confused which method to call double , int  or int , double
+
+		 */
+		// If one of the method is deleted then this call will work as int is default primitive type in java
+		//result.calcAverage(12,1);
+		// But this method will not work on any scenario, we need to create a method double,double otherwise will not work
+		//result.calcAverage(12.0,1.0);
+
+		/**
+		 * 1. It try to find exact match int, int or double, double if found it will call the method
+		 * 2. If not found for (int,int) argument (double,int) and (int,double) both are eligible so if both are present then at calling method will have compile time error
+		 * 3. If only 1 method i.e. either (double,int) or (int,double) present still from calling methid (int,int) is allowed but (double,double) is not allowed
+		 */
+
+
 	}
 	static class Employee{
 		
@@ -46,7 +63,30 @@ public class MethodOverloadingDemo {
 		void book(Engineer e) {
 			System.out.println("economy class");
 		}
+
 		
+	}
+	static class Result {
+
+		// Method overloading only with return type change is throwing type erasure error at compile time
+		/*double calcAverage(int marks1, int marks2) {
+			return (marks1 + marks2)/2;
+		}
+		int calcAverage(int marks1, int marks2) {
+			return (marks1 + marks2)/2;
+		}*/
+
+
+		double calcAverage(double marks1, int marks2) {
+			return(marks1 + marks2)/2;
+		}
+		double calcAverage(int marks1, double marks2) {
+			return(marks1 + marks2)/2;
+		}
+		double calcAverage(int marks1, int marks2) {
+			return(marks1 + marks2)/2;
+		}
+
 	}
 
 }

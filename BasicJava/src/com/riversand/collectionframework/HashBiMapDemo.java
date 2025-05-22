@@ -1,3 +1,4 @@
+/*
 package com.riversand.collectionframework;
 
 import com.google.common.collect.BiMap;
@@ -16,3 +17,4 @@ public class HashBiMapDemo {
 	}
 
 }
+*/

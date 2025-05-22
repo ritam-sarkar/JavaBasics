@@ -1,6 +1,5 @@
 package com.riversand.thread.client;
 
-import com.ibm.util.ThreadUtil;
 
 public class SimpleDeadlockDemo {
 
@@ -14,7 +13,7 @@ public class SimpleDeadlockDemo {
 		t2.setName("B");
 		t1.start();
 		t2.start();
-		ThreadUtil.detectDeadLock();
+		//ThreadUtil.detectDeadLock();
 		
 
 	}

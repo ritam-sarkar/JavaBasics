@@ -1,3 +1,4 @@
+/*
 package com.riversand.thread;
 
 import java.util.concurrent.Callable;
@@ -32,3 +33,4 @@ public class MyCallable implements Callable<String> {
 	}
 
 }
+*/

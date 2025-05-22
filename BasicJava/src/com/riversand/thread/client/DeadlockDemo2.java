@@ -1,12 +1,10 @@
 package com.riversand.thread.client;
 
-import com.ibm.util.ThreadUtil;
 
 public class DeadlockDemo2 {
 
 	public static void main(String[] args) {
 
-		ThreadUtil.detectDeadLock();
 
 		Object ob1 = new Object();
 		Object ob2 = new Object();

@@ -9,7 +9,7 @@ public class BindingDemo {
         Parent p = new Child();
         List<String> l1 = new ArrayList<>();
         ArrayList<String> l2 = new ArrayList<>();
-        p.methodA(l1); // call child method
+        p.methodA(l1); // call child method as overridden applicable here
         p.methodA(l2);// call parent method
 
         /* variables are bound at compile time */

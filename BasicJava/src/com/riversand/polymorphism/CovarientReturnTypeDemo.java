@@ -13,8 +13,6 @@ public class CovarientReturnTypeDemo {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 		System.out.println(new Child().getN());
 		new Child().get().message();
 	}
@@ -23,7 +21,7 @@ public class CovarientReturnTypeDemo {
 class Parent{
 	Number n;
 	public Number getN(){
-		System.out.println("This is parent mthod");
+		System.out.println("This is parent method");
 		return n;
 	}
 	public Parent get(){

@@ -1,7 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="95a57bf2-0d02-4a3d-a087-a8f9fab60b02" name="Default Changelist" comment="" />
+    <list default="true" id="95a57bf2-0d02-4a3d-a087-a8f9fab60b02" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/LongestFactorial.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/ObjectReferenceDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/collectionframework/CustomIterable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/collectionframework/PredicateCompositionDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/collectionframework/problems/FindNonRepetitiveCharacter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/collectionframework/problems/MapSortByValue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/collectionframework/problems/StreamReduceDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/datatype/StringDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Java-9-modules/src/pl.tfij.java9modules/pl.tfij.java9modules.rit/src/module-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Java-9-modules/src/pl.tfij.java9modules/pl.tfij.java9modules.rit/src/pl/tfij/java9modules/rit/MyClass.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Java17New/Module1/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Java17New/Module1/src/com/riversand/module1/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Java17New/Module1/src/module-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Java17New/Module2/src/com/riversand/module2/Display.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Java17New/Module2/src/module-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Java17New/Module3/src/com/riversand/module3/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Java17New/Module3/src/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/DataTypeDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/TypeCastDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/WrapperClassDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/collectionframework/HashBiMapDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/collectionframework/HashBiMapDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/collectionframework/ListDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/collectionframework/ListDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/collectionframework/MapDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/collectionframework/Test2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/concurrency/MutexSemaphoreDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/concurrency/MutexSemaphoreDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/datatype/IncreamentDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/datatype/IncreamentDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/datatype/OperatorPrecedanceDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/datatype/OperatorPrecedanceDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/datatype/WideningBoxingVarArgs.java" beforeDir="false" afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/datatype/WideningBoxingVarArgs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/exception/ExceptionDemo1.java" beforeDir="false" afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/exception/ExceptionDemo1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/exception/OverridingAndException.java" beforeDir="false" afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/exception/OverridingAndException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/generics/inheritance/AbstractCalCulator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/generics/inheritance/Calculator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/generics/inheritance/CalculatorDoubleImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/generics/inheritance/CalculatorIntImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/generics/inheritance/Demo1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/generics/inheritance/GenericBookParcel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/generics/inheritance/Parcel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/generics/inheritance/UpperBound.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/generics/inheritance/main/GenericInheritenceDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/generics/inheritance/main/GenericInheritenceDemo2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/generics/inheritance/main/TypeInterfaceDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/generics/method/main/GenericMethodDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/generics/simple/BoundGeneric1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/generics/simple/BoundGeneric2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/generics/simple/Generics1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/generics/simple/MyClass.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/generics/simple/MyInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/generics/simple/main/BoundDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/generics/simple/main/TestMain.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/generics/typecast/GenInheritDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/generics/wildcard/main/GenericWildCardDemo1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/inheritence/InterfaceJava7.java" beforeDir="false" afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/inheritence/InterfaceJava7.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/thread/MyCallable.java" beforeDir="false" afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/thread/MyCallable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/thread/OnlineBuy.java" beforeDir="false" afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/thread/OnlineBuy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/thread/OnlineReturn.java" beforeDir="false" afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/thread/OnlineReturn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/thread/client/DeadlockDemo2.java" beforeDir="false" afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/thread/client/DeadlockDemo2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/thread/client/LiveLockDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/thread/client/LiveLockDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/thread/client/SimpleCallableDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/thread/client/SimpleCallableDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/thread/client/SimpleDeadlockDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/thread/client/SimpleDeadlockDemo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BasicJava/src/com/riversand/thread/util/ThreadUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/BasicJava/src/com/riversand/thread/util/ThreadUtil.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -9,6 +70,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -22,29 +86,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "D:/Workspace/JavaBasics/Designpattern2",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
+  }
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="95a57bf2-0d02-4a3d-a087-a8f9fab60b02" name="Default Changelist" comment="" />
       <created>1599983636101</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1599983636101</updated>
     </task>
     <servers />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="497" y="144" width="424" height="520" key="FileChooserDialogImpl" timestamp="1599983778124">
-      <screen x="72" y="27" width="1294" height="741" />
-    </state>
-    <state x="497" y="144" width="424" height="520" key="FileChooserDialogImpl/72.27.1294.741@72.27.1294.741" timestamp="1599983778124" />
-    <state x="72" y="101" width="1284" height="599" key="new project wizard" timestamp="1599983804459">
-      <screen x="72" y="27" width="1294" height="741" />
-    </state>
-    <state x="72" y="101" width="1284" height="599" key="new project wizard/72.27.1294.741@72.27.1294.741" timestamp="1599983804459" />
   </component>
 </project>

@@ -1,14 +1,17 @@
 /**
  * 
- */
+ *//*
+
 package com.riversand.thread;
 
 import com.ibm.model.Book;
 
+*/
 /**
  * @author Ritam
  *
- */
+ *//*
+
 public class OnlineBuy implements Runnable {
 
 	private Book book;
@@ -30,3 +33,4 @@ public class OnlineBuy implements Runnable {
 	
 
 }
+*/

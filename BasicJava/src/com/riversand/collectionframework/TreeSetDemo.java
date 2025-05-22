@@ -64,25 +64,7 @@ class Student /*implements Comparable*/{
 	public void setName(String name) {
 		this.name = name;
 	}
-	/*@Override
-	public boolean equals(Object o){
-		if(o instanceof Student){
-			Student s = (Student)o;
-			if(s.getId() == this.getId()){
-				return true;
-			}else{
-				return false;
-			}
-		}
-		return false;
-	}
-	@Override
-	public int compareTo(Object o) {
-		
-	Student s = (Student)o;
-	return this.getId()-s.getId();
-		
-	}*/
+
 }
 class StudentIdComparator implements Comparator<Student>{
 

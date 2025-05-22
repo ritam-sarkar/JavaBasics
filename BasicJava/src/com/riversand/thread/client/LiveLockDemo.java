@@ -1,12 +1,11 @@
 package com.riversand.thread.client;
 
-import com.ibm.util.ThreadUtil;
 
 public class LiveLockDemo {
 
 	public static void main(String[] args) {
 		
-		ThreadUtil.detectDeadLock();
+		//ThreadUtil.detectDeadLock();
 
 		final Worker worker1 = new Worker("Worker 1 ", true);
         final Worker worker2 = new Worker("Worker 2", true);

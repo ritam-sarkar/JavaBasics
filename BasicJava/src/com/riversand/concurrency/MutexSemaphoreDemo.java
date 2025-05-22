@@ -1,21 +1,26 @@
 /**
  * 
- */
+ *//*
+
 package com.riversand.concurrency;
 
 import java.util.concurrent.Semaphore;
 
 import com.sun.corba.se.impl.orbutil.concurrent.Mutex;
 
+*/
 /**
  * @author Ritam
  *
- */
+ *//*
+
 public class MutexSemaphoreDemo {
 
-	/**
+	*/
+/**
 	 * @param args
-	 */
+	 *//*
+
 	public static void main(String[] args) {
 		MutexSemaphoreDemo demo = new MutexSemaphoreDemo();
         Semaphore semaphore = new Semaphore(3);
@@ -26,10 +31,12 @@ public class MutexSemaphoreDemo {
         SemaThread s2 = demo.new SemaThread("s2", semaOb);
         SemaThread s3 = demo.new SemaThread("s3", semaOb);
         SemaThread s4 = demo.new SemaThread("s4", semaOb);
-        /*MuteThread m1 = demo.new MuteThread("m1", mutexOb);
+        */
+/*MuteThread m1 = demo.new MuteThread("m1", mutexOb);
         MuteThread m2 = demo.new MuteThread("m2", mutexOb);
         MuteThread m3 = demo.new MuteThread("m3", mutexOb);
-        MuteThread m4 = demo.new MuteThread("m4", mutexOb);*/
+        MuteThread m4 = demo.new MuteThread("m4", mutexOb);*//*
+
         s1.start();
         s2.start();
         s3.start();
@@ -102,3 +109,4 @@ public class MutexSemaphoreDemo {
 
 }
 
+*/

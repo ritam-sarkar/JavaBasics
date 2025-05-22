@@ -8,10 +8,11 @@ public class Overriding {
 	public static void main(String[] args)  {
  
 		Parent p = new Child();
-		//p.f1(0.5f, 0.2f);
+		new Child().f1(0.5f, 0.2f);
 		Child c = new Child();
 		c.f1(5, 2);
-		p.f4();
+		//Rule : any static items method or variables are bind with the class reference, they don't participate in method overroding
+		p.f4(); // call parent method
 		
 		
 	}
@@ -37,7 +38,8 @@ public class Overriding {
 	}
 	static class Child extends Parent{
 		
-		//Rule : This is not a override, just an another method		
+		//Rule : This is not a override, just an another method
+		// Rule : M is static variable and its inherited not overroden
         void f1(float a, float b)  {
         	System.out.println(" float a float b in child"+M);
 		}

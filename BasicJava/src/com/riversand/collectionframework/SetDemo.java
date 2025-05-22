@@ -3,10 +3,7 @@
  */
 package com.riversand.collectionframework;
 
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * @author Ritam
@@ -49,9 +46,15 @@ public class SetDemo {
 		studentSet.add(s1);
 		studentSet.add(s2);
 		studentSet.add(s3);
+		// Set will not replace
 		for(Student student : studentSet) {
 			System.out.println("id "+student.getId()+" name "+student.getName());
 		}
+		Map<Student,String> map = new HashMap<>();
+		map.put(s2,"s2");
+		map.put(s3,"s3");
+		// Map will replace
+		System.out.println(map.values());
 		
 		
 

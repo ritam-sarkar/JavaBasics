@@ -1,3 +1,4 @@
+/*
 package com.riversand.thread.client;
 
 import java.util.concurrent.Callable;
@@ -27,22 +28,27 @@ public class SimpleCallableDemo {
 		
 		
 		// submit runnbale object
-		/*MyRunnable runnable1 = demo.new MyRunnable();
+		*/
+/*MyRunnable runnable1 = demo.new MyRunnable();
 		Future f = ex.submit(runnable1);
-		System.out.println(f.get());*/
+		System.out.println(f.get());*//*
+
 		
 		
 
 		//Using Executor framework with no return type;
-		/*List<Callable<String>> tasks = new ArrayList<Callable<String>>();
+		*/
+/*List<Callable<String>> tasks = new ArrayList<Callable<String>>();
 		tasks.add(callable1);
 		tasks.add(callable2);
 		tasks.add(callable3);
-		ex.invokeAll(tasks);*/
+		ex.invokeAll(tasks);*//*
+
 		
 		
 		//Using Executor, Future framework with  return type;
-		/*Future<String> future1 = ex.submit(callable1);
+		*/
+/*Future<String> future1 = ex.submit(callable1);
 		Future<String> future2 = ex.submit(callable2);
 		Future<String> future3 = ex.submit(callable3);
 		List<Future<String>> futureList = new ArrayList<Future<String>>();
@@ -51,10 +57,12 @@ public class SimpleCallableDemo {
 		futureList.add(future3);
 		for(Future<String> future : futureList){
 			System.out.println(future.get());
-		}*/
+		}*//*
+
 		
 		//Using executor and futuretask
-		/*FutureTask<String> futureTask1 = new FutureTask<String>(callable1);
+		*/
+/*FutureTask<String> futureTask1 = new FutureTask<String>(callable1);
 		FutureTask<String> futureTask2 = new FutureTask<String>(callable2);
 		FutureTask<String> futureTask3 = new FutureTask<String>(callable3);
 		ex.execute(futureTask3);
@@ -66,7 +74,8 @@ public class SimpleCallableDemo {
 			System.out.println("task 1 done"+futureTask1.get());
 			System.out.println(" task 2 is done");
 			ex.shutdown();
-		}*/				
+		}*//*
+
 			
 
 		
@@ -83,3 +92,4 @@ public class SimpleCallableDemo {
 	}
 
 }
+*/

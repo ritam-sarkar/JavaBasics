@@ -39,6 +39,8 @@ public class OverridingAndException {
 		// Rule1 : Child and only throw the exception or the child class of the exception or  no exception
 		@Override
 		void f1() throws FileNotFoundException{
+			//Rule 1.1 : method can throw the exception , subclass but not superclass of the exception mentioned in method signature
+			//throw new IOException();
 			
 		}
 		// Rule2 : If parent does not throw exception child can throw only runtime exception, not checked exception not even Exception
