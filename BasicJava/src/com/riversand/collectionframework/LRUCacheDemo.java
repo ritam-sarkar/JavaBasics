@@ -27,6 +27,7 @@ public class LRUCacheDemo {
         System.out.println(lruCache.get("A"));// A is recently used
         System.out.println(lruCache.get("B")); // as capacity is 2 , B is not there in cache
         System.out.println(lruCache.get("C")); // C is also there
+        ((CustomLruCache)lruCache).printCacheState();
 
         System.out.println(" ------------- Time to leave lru cache  ------------------------");
         LRUCache<String,String> lruCacheTTL = getCache(() -> new LRUCacheWithTTL<String,String>(3, 3000));
