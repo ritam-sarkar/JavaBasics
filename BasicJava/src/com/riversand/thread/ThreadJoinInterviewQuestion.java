@@ -1,4 +1,4 @@
-package com.riversand.thread.client;
+package com.riversand.thread;
 /**
  * Lets take a scenario, we have Main thread, Thread 1, Thread 2 and Thread 3 and we want our thread to execute in particular scenario like,
 Main thread to start first and ends only after all 3 threads is completed.

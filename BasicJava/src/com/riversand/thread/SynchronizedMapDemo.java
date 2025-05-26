@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.riversand.thread.client;
+package com.riversand.thread;
 
 import java.util.Collections;
 import java.util.HashMap;

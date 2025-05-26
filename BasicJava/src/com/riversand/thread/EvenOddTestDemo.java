@@ -1,4 +1,4 @@
-package com.riversand.thread.client;
+package com.riversand.thread;
 public class EvenOddTestDemo {
 
     public static void main(String []  args) {

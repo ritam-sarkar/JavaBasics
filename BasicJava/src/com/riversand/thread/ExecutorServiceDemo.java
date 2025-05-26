@@ -1,4 +1,4 @@
-package com.riversand.thread.client;
+package com.riversand.thread;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

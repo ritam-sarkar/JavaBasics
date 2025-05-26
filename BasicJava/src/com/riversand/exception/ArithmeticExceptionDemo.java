@@ -23,6 +23,8 @@ public class ArithmeticExceptionDemo {
 		System.out.println(-9.0/0.0);
 		//System.out.println(0/0);
 		System.out.println(0/0.0);
+		double x = -3.0/0;
+		System.out.println(x+2.0);
 		
 	}
 	

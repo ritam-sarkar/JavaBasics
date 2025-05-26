@@ -16,10 +16,7 @@ public class ClassNotFoundExceptionDemo {
 		// TODO Auto-generated method stub
 		try {
 			Class.forName("abc").newInstance();
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
+		} catch (InstantiationException | IllegalAccessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {

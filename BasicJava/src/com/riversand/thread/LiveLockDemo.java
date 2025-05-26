@@ -1,5 +1,7 @@
-package com.riversand.thread.client;
+package com.riversand.thread;
 
+
+import com.riversand.concurrency.ThreadUtil;
 
 public class LiveLockDemo {
 

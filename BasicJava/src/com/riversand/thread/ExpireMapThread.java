@@ -1,4 +1,4 @@
-package com.riversand.thread.client;
+package com.riversand.thread;
 
 import java.util.ArrayList;
 import java.util.Date;

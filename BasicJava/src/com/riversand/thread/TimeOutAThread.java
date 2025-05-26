@@ -1,4 +1,4 @@
-package com.riversand.thread.client;
+package com.riversand.thread;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -18,20 +18,21 @@ public class TimeOutAThread {
 		}
 		task.stop();
 	}
+	static class MyTask implements Runnable{
+		private AtomicBoolean keepRunning = new AtomicBoolean(true);
 
-	
-}
-class MyTask implements Runnable{
-	private AtomicBoolean keepRunning = new AtomicBoolean(true);
-
-	@Override
-	public void run() {		
-		while(keepRunning.get()) {
-			System.out.println(Thread.currentThread().getName()+" running");
+		@Override
+		public void run() {
+			while(keepRunning.get()) {
+				System.out.println(Thread.currentThread().getName()+" running");
+			}
 		}
+		public void stop() {
+			keepRunning.set(false);
+		}
+
 	}
-	public void stop() {
-		keepRunning.set(false);
-	}
+
 	
 }
+
