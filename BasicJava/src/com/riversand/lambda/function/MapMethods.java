@@ -16,11 +16,12 @@ public class MapMethods {
         }
         System.out.println(freq);
         System.out.println("------------compute if absent method ------------");
-        Map<String,AtomicInteger> freq2 = new HashMap<>();
-        words.forEach(word -> {
-            freq2.computeIfAbsent(word,v-> new AtomicInteger(0)).incrementAndGet();
-        });
-        System.out.println(freq2);
+        Map<String, List<String>> multimap = new HashMap<>();
+        List<String> fruits = new ArrayList<>();
+        fruits.add("banana");
+        multimap.put("fruits",fruits);
+        multimap.computeIfAbsent("fruits", k -> new ArrayList<>()).add("apple");
+        System.out.println(multimap);
         System.out.println("------------compute if present---------");
         Map<Integer, String> map = new HashMap<>();
         map.put(1, "Java");

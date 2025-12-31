@@ -18,14 +18,14 @@ public class Collector {
     private static void buildCSV(){
         System.out.println("---------build csv----------");
         BiConsumer<StringBuilder,String> accumulator = (sb,s1)-> {
-            if(sb.length() > 0){
+            if(!sb.isEmpty()){
                 sb.append(",");
             }
             sb.append(s1);
         };
         // combiner will be ignored for normal stream
         BiConsumer<StringBuilder,StringBuilder> combiner = (sb1,sb2)-> {
-            if(sb1.length() > 0){
+            if(!sb1.isEmpty()){
                 sb1.append(",");
             }
             sb1.append(sb2);

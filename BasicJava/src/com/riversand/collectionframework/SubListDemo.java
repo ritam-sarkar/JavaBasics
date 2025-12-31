@@ -24,7 +24,7 @@ public class SubListDemo {
 		System.out.println("after remove list >> "+list);
 		// lets modify list and it will throw concurrent modification exception while parsing sublist
 		/*list.add(6);
-		System.out.println("after adding into list sublist "+subList);*/
+		System.out.println("after adding into list sublist "+subList.get(0));*/
 		//lets add in sublist
 		subList.add(6);
 		System.out.println("after adding into sublist list >> "+list);

@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import static java.util.stream.Collectors.groupingBy;
 
 public class MapSortByValue {
-    public static void main(String[] args) throws Exception {
+    static void main(String[] args) throws Exception {
         // Usecase 1
         groupTransactions(List.of("notebook", "notebook", "mouse", "keyboard", "mouse"));
         // Use case 2
@@ -25,9 +25,9 @@ public class MapSortByValue {
 
     private static void exampleGroupBy(List<BlogPost> blogPosts) {
         // Group by only key
-        Map<BlogPostType, List<BlogPost>> likesPerType = blogPosts.stream().collect(groupingBy(BlogPost::getType));
+        Map<BlogPostType, List<BlogPost>> likesPerType = blogPosts.stream().collect(groupingBy(BlogPost::type));
         // Group by on key and value both to modify returned map value type
-        Map<BlogPostType, Set<BlogPost>> likesPerTypeSet = blogPosts.stream().collect(groupingBy(BlogPost::getType, Collectors.toSet()));
+        Map<BlogPostType, Set<BlogPost>> likesPerTypeSet = blogPosts.stream().collect(groupingBy(BlogPost::type, Collectors.toSet()));
         // Group by multiple key only
 
 
@@ -62,35 +62,8 @@ public class MapSortByValue {
         return null;
     }
 
-    private static class BlogPost {
-        private String title;
-        private String author;
-        private BlogPostType type;
-        private int likes;
+    public record BlogPost(String title, String author, BlogPostType type, int likes) {}
 
-        public BlogPost(String title, String author, BlogPostType type, int likes) {
-            this.title = title;
-            this.author = author;
-            this.type = type;
-            this.likes = likes;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public String getAuthor() {
-            return author;
-        }
-
-        public BlogPostType getType() {
-            return type;
-        }
-
-        public int getLikes() {
-            return likes;
-        }
-    }
 
     enum BlogPostType {
         NEWS,
