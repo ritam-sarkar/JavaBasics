@@ -112,7 +112,8 @@ class ThreadSafeSingleton {
 
 /**
  * Bill pugh is lazy loaded , and also thread safe
- * final prevents reassignment and  ensures visibility of the object state accross threads
+ * Why ?
+ * JVM guarantees A class is loaded and initialized only once, and that too in a thread-safe manner
  * new initialization is itself thread safe , now until Holder.Instance is called Holder class is not initialized and the INSTANCE is also final only once initialized
  * inside getInstance we have not written any lines of extra code , so it makes mutable shared state
  * Analogy : Imagine getInstance() as a door. The first thread opens it and triggers the loading of Holder.INSTANCE. Every other thread just walks through the already-opened door.
